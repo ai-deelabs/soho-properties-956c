@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>โซโห พร็อพเพอร์ตี้ส์ — เว็บไซต์อสังหาริมทรัพย์ชั้นนำในกรุงเทพฯ</title>
+<meta name="description" content="โซโห พร็อพเพอร์ตี้ส์ — ค้นหา ซื้อ ขาย เช่าคอนโด บ้าน อาคารสำนักงาน และอสังหาริมทรัพย์ระดับพรีเมียมในกรุงเทพฯ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bone:#EDE8DF;
+  --slate:#4A5568;
+  --mauve:#9B7E8C;
+  --near-black:#0F0F10;
+  --white:#FAFAF8;
+  --slate-light:#E2E8F0;
+  --mauve-light:#C4A8B4;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans','IBM Plex Sans Thai','Sukhumvit Set',sans-serif;
+  --thai:'IBM Plex Sans Thai','Sukhumvit Set',sans-serif;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:var(--thai),var(--sans);
+  background:var(--white);
+  color:var(--near-black);
+  font-size:16px;
+  line-height:1.8;
+  word-break:break-word;
+  overflow-wrap:break-word;
+  overflow-x:hidden;
+}
+
+/* ── TYPOGRAPHY ── */
+h1,h2,h3,h4,h5{
+  font-family:var(--serif);
+  font-weight:300;
+  line-height:1.5;
+  letter-spacing:0.01em;
+}
+.label{
+  font-family:var(--sans);
+  font-size:0.7rem;
+  font-weight:600;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--mauve);
+}
+p{line-height:1.8}
+
+/* ── NAVBAR ── */
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  padding:1.4rem 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:background 0.4s,padding 0.4s,box-shadow 0.4s;
+}
+.nav.scrolled{
+  background:rgba(15,15,16,0.96);
+  backdrop-filter:blur(12px);
+  padding:0.9rem 2rem;
+  box-shadow:0 2px 32px rgba(0,0,0,0.22);
+}
+.nav__logo{
+  font-family:var(--serif);
+  font-size:1.45rem;
+  font-weight:500;
+  color:var(--white);
+  text-decoration:none;
+  letter-spacing:0.04em;
+}
+.nav__logo span{color:var(--mauve-light)}
+.nav__links{
+  display:none;
+  gap:2.2rem;
+  list-style:none;
+}
+.nav__links a{
+  font-family:var(--sans);
+  font-size:0.82rem;
+  font-weight:500;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.78);
+  text-decoration:none;
+  transition:color 0.2s;
+  padding:0.5rem 0;
+}
+.nav__links a:hover{color:var(--mauve-light)}
+.nav__right{display:flex;align-items:center;gap:1.2rem}
+.lang-sw{
+  display:flex;
+  align-items:center;
+  gap:0.35rem;
+  color:rgba(255,255,255,0.7);
+  font-family:var(--sans);
+  font-size:0.78rem;
+  font-weight:500;
+  letter-spacing:0.06em;
+  background:none;border:none;
+  cursor:pointer;
+  padding:0.4rem 0;
+  transition:color 0.2s;
+}
+.lang-sw:hover{color:var(--white)}
+.lang-sw svg{flex-shrink:0}
+.nav__cta{
+  display:none;
+  font-family:var(--sans);
+  font-size:0.75rem;
+  font-weight:600;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--near-black);
+  background:var(--bone);
+  border:none;
+  padding:0.6rem 1.4rem;
+  border-radius:2px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:background 0.2s,color 0.2s;
+}
+.nav__cta:hover{background:var(--mauve-light);color:var(--white)}
+.nav__burger{
+  background:none;border:none;
+  color:var(--white);
+  cursor:pointer;
+  padding:0.4rem;
+  display:flex;align-items:center;
+}
+
+/* Mobile menu */
+.nav__mobile{
+  display:none;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:var(--near-black);
+  z-index:99;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2.2rem;
+}
+.nav__mobile.open{display:flex}
+.nav__mobile a{
+  font-family:var(--serif);
+  font-size:2rem;
+  font-weight:300;
+  color:var(--bone);
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.nav__mobile a:hover{color:var(--mauve-light)}
+.nav__mobile__close{
+  position:absolute;
+  top:1.4rem;right:1.5rem;
+  background:none;border:none;
+  color:var(--white);
+  cursor:pointer;
+  padding:0.4rem;
+}
+
+@media(min-width:768px){
+  .nav__links{display:flex}
+  .nav__cta{display:inline-block}
+  .nav__burger{display:none}
+}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+}
+.hero__bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1572272294800-a99116ad349c?w=1600&h=1000&fit=crop');
+  background-size:cover;
+  background-position:center 40%;
+  transform-origin:center center;
+  animation:heroZoom 18s ease-out forwards;
+}
+@keyframes heroZoom{
+  from{transform:scale(1.08)}
+  to{transform:scale(1)}
+}
+.hero__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    170deg,
+    rgba(15,15,16,0.18) 0%,
+    rgba(15,15,16,0.35) 40%,
+    rgba(15,15,16,0.82) 100%
+  );
+}
+.hero__content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  padding:8rem 1.8rem 5rem;
+  text-align:center;
+}
+.hero__label{
+  font-family:var(--sans);
+  font-size:0.68rem;
+  font-weight:600;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--mauve-light);
+  margin-bottom:1.4rem;
+  opacity:0;
+  animation:fadeUp 0.8s 0.3s ease-out forwards;
+}
+.hero__h1{
+  font-family:var(--serif);
+  font-size:clamp(2.6rem,9vw,6.2rem);
+  font-weight:300;
+  color:var(--white);
+  line-height:1.12;
+  margin-bottom:1.6rem;
+  opacity:0;
+  animation:fadeUp 0.9s 0.5s ease-out forwards;
+}
+.hero__h1 em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--mauve-light);
+}
+.hero__sub{
+  font-size:1rem;
+  color:rgba(237,232,223,0.82);
+  max-width:520px;
+  margin:0 auto 2.6rem;
+  opacity:0;
+  animation:fadeUp 0.9s 0.7s ease-out forwards;
+}
+.hero__actions{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  align-items:center;
+  opacity:0;
+  animation:fadeUp 0.9s 0.9s ease-out forwards;
+}
+.btn-primary{
+  font-family:var(--sans);
+  font-size:0.8rem;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--near-black);
+  background:var(--bone);
+  border:none;
+  padding:1rem 2.4rem;
+  border-radius:2px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:background 0.25s,transform 0.2s,box-shadow 0.2s;
+  display:inline-block;
+  min-height:44px;
+}
+.btn-primary:hover{
+  background:var(--mauve-light);
+  color:var(--white);
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(155,126,140,0.4);
+}
+.btn-outline{
+  font-family:var(--sans);
+  font-size:0.8rem;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--white);
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.45);
+  padding:1rem 2.4rem;
+  border-radius:2px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:border-color 0.25s,background 0.25s,transform 0.2s;
+  display:inline-block;
+  min-height:44px;
+}
+.btn-outline:hover{
+  border-color:var(--mauve-light);
+  background:rgba(155,126,140,0.15);
+  transform:translateY(-2px);
+}
+@media(min-width:540px){
+  .hero__actions{flex-direction:row;justify-content:center}
+}
+
+/* ── SEARCH BAR ── */
+.search-strip{
+  background:var(--near-black);
+  padding:2rem 1.5rem;
+}
+.search-strip__inner{
+  max-width:860px;
+  margin:0 auto;
+}
+.search-strip__label{
+  font-family:var(--sans);
+  font-size:0.68rem;
+  font-weight:600;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--mauve);
+  margin-bottom:1rem;
+  display:block;
+}
+.search-form{
+  display:flex;
+  flex-direction:column;
+  gap:0.8rem;
+}
+.search-form select,
+.search-form input{
+  font-family:var(--thai),var(--sans);
+  font-size:0.9rem;
+  color:var(--white);
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);
+  padding:0.9rem 1.1rem;
+  border-radius:2px;
+  appearance:none;
+  outline:none;
+  transition:border-color 0.2s;
+  min-height:44px;
+}
+.search-form select:focus,
+.search-form input:focus{border-color:var(--mauve)}
+.search-form select option{background:var(--near-black)}
+.search-form__row{display:flex;gap:0.8rem;flex-wrap:wrap}
+.search-form__row select{flex:1;min-width:140px}
+.search-btn{
+  font-family:var(--sans);
+  font-size:0.8rem;
+  font-weight:600;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--near-black);
+  background:var(--bone);
+  border:none;
+  padding:0.9rem 1.8rem;
+  border-radius:2px;
+  cursor:pointer;
+  display:flex;align-items:center;gap:0.5rem;
+  transition:background 0.2s,transform 0.2s;
+  min-height:44px;
+  white-space:nowrap;
+}
+.search-btn:hover{background:var(--mauve-light);color:var(--white);transform:translateY(-1px)}
+@media(min-width:640px){
+  .search-form{flex-direction:row;align-items:flex-end}
+  .search-form input{flex:2}
+  .search-form__row{flex:3}
+}
+
+/* ── SECTION BASE ── */
+.section{padding:5rem 1.8rem}
+.section__inner{max-width:1100px;margin:0 auto}
+.section__header{
+  text-align:center;
+  margin-bottom:3.5rem;
+}
+.section__title{
+  font-family:var(--serif);
+  font-size:clamp(2rem,5vw,3.4rem);
+  font-weight:300;
+  line-height:1.25;
+  color:var(--near-black);
+  margin-bottom:0.8rem;
+}
+.section__title em{font-style:italic;color:var(--mauve)}
+.section__desc{
+  font-size:0.95rem;
+  color:var(--slate);
+  max-width:520px;
+  margin:0 auto;
+  line-height:1.85;
+}
+
+/* ── STATS BAND ── */
+.stats-band{
+  background:var(--near-black);
+  padding:3rem 1.8rem;
+  clip-path:polygon(0 0,100% 0,100% 85%,0 100%);
+  padding-bottom:5rem;
+}
+.stats-band__inner{
+  max-width:900px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2rem 1.5rem;
+  text-align:center;
+}
+.stat__num{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,7vw,4rem);
+  font-weight:300;
+  color:var(--bone);
+  line-height:1;
+}
+.stat__label{
+  font-family:var(--sans);
+  font-size:0.7rem;
+  font-weight:500;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--mauve);
+  margin-top:0.4rem;
+}
+@media(min-width:640px){
+  .stats-band__inner{grid-template-columns:repeat(4,1fr)}
+}
+
+/* ── HOT PROPERTIES (cinematic panoramas) ── */
+.hot-props{background:var(--bone);padding:5rem 0}
+.hot-props__header{
+  padding:0 1.8rem;
+  max-width:1100px;
+  margin:0 auto 3rem;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+@media(min-width:640px){
+  .hot-props__header{flex-direction:row;align-items:flex-end;justify-content:space-between}
+}
+.hot-props__title{
+  font-family:var(--serif);
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:300;
+  line-height:1.2;
+}
+.hot-props__title em{font-style:italic;color:var(--mauve)}
+.hot-props__link{
+  font-family:var(--sans);
+  font-size:0.75rem;
+  font-weight:600;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--slate);
+  text-decoration:none;
+  display:flex;align-items:center;gap:0.4rem;
+  border-bottom:1px solid var(--mauve);
+  padding-bottom:2px;
+  white-space:nowrap;
+  transition:color 0.2s;
+}
+.hot-props__link:hover{color:var(--mauve)}
+
+/* Cinematic panorama cards */
+.panorama{
+  position:relative;
+  width:100%;
+  height:55vw;
+  min-height:260px;
+  max-height:520px;
+  overflow:hidden;
+  margin-bottom:0.5rem;
+  cursor:pointer;
+}
+.panorama:hover .panorama__img{transform:scale(1.04)}
+.panorama__img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 0.7s ease;
+}
+.panorama__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(15,15,16,0.78) 0%,
+    rgba(15,15,16,0.18) 55%,
+    transparent 100%
+  );
+}
+.panorama__content{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  padding:2rem 2rem 1.8rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+.panorama__tag{
+  font-family:var(--sans);
+  font-size:0.64rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--mauve-light);
+}
+.panorama__title{
+  font-family:var(--serif);
+  font-size:clamp(1.4rem,4vw,2.2rem);
+  font-weight:400;
+  color:var(--white);
+  line-height:1.2;
+}
+.panorama__meta{
+  display:flex;
+  gap:1.4rem;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.panorama__price{
+  font-family:var(--serif);
+  font-size:1.35rem;
+  font-weight:500;
+  color:var(--bone);
+}
+.panorama__details{
+  font-family:var(--sans);
+  font-size:0.75rem;
+  color:rgba(237,232,223,0.7);
+  display:flex;gap:1rem;align-items:center;
+}
+.panorama__details span{display:flex;align-items:center;gap:0.3rem}
+
+.props-list{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 1.8rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+.panorama__badge{
+  position:absolute;
+  top:1.2rem;right:1.2rem;
+  font-family:var(--sans);
+  font-size:0.62rem;
+  font-weight:700;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  background:var(--mauve);
+  color:var(--white);
+  padding:0.35em 0.8em;
+  border-radius:2px;
+}
+
+/* ── HOW IT WORKS — numbered steps ── */
+.how{background:var(--white);padding:5rem 1.8rem}
+.how__inner{max-width:900px;margin:0 auto}
+.how__steps{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  margin-top:3rem;
+}
+.step{
+  display:flex;
+  gap:2rem;
+  padding:2.2rem 0;
+  border-top:1px solid rgba(74,85,104,0.14);
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.step.visible{opacity:1;transform:translateY(0)}
+.step__num{
+  font-family:var(--serif);
+  font-size:3.2rem;
+  font-weight:300;
+  color:var(--mauve-light);
+  opacity:0.55;
+  line-height:1;
+  flex-shrink:0;
+  width:3rem;
+  text-align:right;
+}
+.step__body{flex:1}
+.step__title{
+  font-family:var(--serif);
+  font-size:1.5rem;
+  font-weight:400;
+  margin-bottom:0.5rem;
+  line-height:1.3;
+}
+.step__desc{
+  font-size:0.92rem;
+  color:var(--slate);
+  line-height:1.85;
+}
+
+/* ── NEIGHBORHOODS — horizontal scroll ── */
+.hoods{
+  background:var(--near-black);
+  padding:5rem 0;
+  overflow:hidden;
+}
+.hoods__header{
+  padding:0 1.8rem;
+  max-width:1100px;
+  margin:0 auto 2.5rem;
+}
+.hoods__title{
+  font-family:var(--serif);
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:300;
+  color:var(--bone);
+  line-height:1.25;
+}
+.hoods__title em{font-style:italic;color:var(--mauve-light)}
+.hoods__scroll{
+  display:flex;
+  gap:1.2rem;
+  overflow-x:auto;
+  padding:0 1.8rem 1.5rem;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.hoods__scroll::-webkit-scrollbar{display:none}
+.hood-card{
+  flex-shrink:0;
+  width:260px;
+  border-radius:4px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  transition:transform 0.3s ease;
+}
+.hood-card:hover{transform:translateY(-4px)}
+.hood-card__img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.5s ease;
+}
+.hood-card:hover .hood-card__img{transform:scale(1.04)}
+.hood-card__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(15,15,16,0.88) 0%,transparent 60%);
+}
+.hood-card__body{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  padding:1.4rem;
+}
+.hood-card__name{
+  font-family:var(--serif);
+  font-size:1.35rem;
+  font-weight:400;
+  color:var(--white);
+  line-height:1.2;
+}
+.hood-card__tag{
+  font-family:var(--sans);
+  font-size:0.64rem;
+  font-weight:600;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--mauve-light);
+  margin-top:0.3rem;
+}
+
+/* ── PROPERTY TYPES — alternating image-text ── */
+.prop-types{background:var(--bone);padding:5rem 1.8rem}
+.prop-types__inner{max-width:1060px;margin:0 auto}
+.prop-row{
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+  padding:3.5rem 0;
+  border-top:1px solid rgba(74,85,104,0.15);
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.65s ease,transform 0.65s ease;
+}
+.prop-row.visible{opacity:1;transform:translateY(0)}
+.prop-row:first-child{border-top:none;padding-top:0}
+.prop-row__img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:4px;
+  transition:transform 0.4s ease;
+}
+.prop-row:hover .prop-row__img{transform:scale(1.02)}
+.prop-row__body{display:flex;flex-direction:column;justify-content:center;gap:1rem}
+.prop-row__type{
+  font-family:var(--sans);
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--mauve);
+}
+.prop-row__title{
+  font-family:var(--serif);
+  font-size:clamp(1.5rem,4vw,2.4rem);
+  font-weight:300;
+  line-height:1.2;
+}
+.prop-row__title em{font-style:italic;color:var(--mauve)}
+.prop-row__desc{font-size:0.9rem;color:var(--slate);line-height:1.9}
+.prop-row__btn{
+  font-family:var(--sans);
+  font-size:0.74rem;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--near-black);
+  text-decoration:none;
+  border-bottom:1.5px solid var(--near-black);
+  padding-bottom:2px;
+  width:fit-content;
+  transition:color 0.2s,border-color 0.2s;
+  display:flex;align-items:center;gap:0.4rem;
+}
+.prop-row__btn:hover{color:var(--mauve);border-color:var(--mauve)}
+
+@media(min-width:640px){
+  .prop-row{
+    flex-direction:row;
+    align-items:center;
+    gap:4rem;
+  }
+  .prop-row--reverse{flex-direction:row-reverse}
+  .prop-row__img{width:48%;height:300px;flex-shrink:0}
+  .prop-row__body{flex:1}
+}
+
+/* ── WHY SOHO — feature accordion ── */
+.why{background:var(--white);padding:5rem 1.8rem}
+.why__inner{max-width:860px;margin:0 auto}
+.accordion{margin-top:3rem;border-top:1px solid rgba(74,85,104,0.15)}
+.acc-item{border-bottom:1px solid rgba(74,85,104,0.15)}
+.acc-trigger{
+  width:100%;
+  background:none;border:none;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 0;
+  cursor:pointer;
+  text-align:left;
+  gap:1rem;
+}
+.acc-trigger__title{
+  font-family:var(--serif);
+  font-size:1.25rem;
+  font-weight:400;
+  color:var(--near-black);
+  line-height:1.3;
+}
+.acc-trigger__icon{
+  flex-shrink:0;
+  color:var(--mauve);
+  transition:transform 0.3s ease;
+}
+.acc-item.open .acc-trigger__icon{transform:rotate(45deg)}
+.acc-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease;
+}
+.acc-body__inner{
+  padding:0 0 1.4rem;
+  font-size:0.92rem;
+  color:var(--slate);
+  line-height:1.9;
+}
+
+/* ── FEATURED LISTING (full-bleed editorial) ── */
+.featured{
+  position:relative;
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+.featured__bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1776361964513-86fba5039617?w=1600&h=900&fit=crop');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+.featured__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    105deg,
+    rgba(15,15,16,0.9) 0%,
+    rgba(15,15,16,0.65) 55%,
+    rgba(15,15,16,0.2) 100%
+  );
+}
+.featured__content{
+  position:relative;z-index:2;
+  max-width:600px;
+  padding:5rem 2rem;
+  margin-left:max(1.8rem, 5vw);
+}
+.featured__tag{
+  font-family:var(--sans);
+  font-size:0.66rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--mauve-light);
+  margin-bottom:1rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.featured__title{
+  font-family:var(--serif);
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:300;
+  color:var(--white);
+  line-height:1.15;
+  margin-bottom:1rem;
+}
+.featured__title em{font-style:italic;color:var(--mauve-light)}
+.featured__spec{
+  display:flex;gap:2rem;flex-wrap:wrap;
+  margin:1.5rem 0;
+}
+.featured__spec-item{
+  display:flex;flex-direction:column;
+}
+.featured__spec-val{
+  font-family:var(--serif);
+  font-size:1.6rem;
+  font-weight:400;
+  color:var(--bone);
+  line-height:1;
+}
+.featured__spec-key{
+  font-family:var(--sans);
+  font-size:0.65rem;
+  font-weight:600;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--mauve-light);
+  margin-top:0.25rem;
+}
+.featured__price{
+  font-family:var(--serif);
+  font-size:2.2rem;
+  font-weight:400;
+  color:var(--white);
+  margin-bottom:1.8rem;
+}
+
+/* ── TESTIMONIALS ── */
+.testi{
+  background:var(--near-black);
+  padding:5rem 1.8rem;
+}
+.testi__inner{max-width:800px;margin:0 auto;text-align:center}
+.testi__title{
+  font-family:var(--serif);
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:300;
+  color:var(--bone);
+  margin-bottom:3rem;
+}
+.testi__title em{font-style:italic;color:var(--mauve-light)}
+.testi__cards{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+}
+.testi-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:4px;
+  padding:2rem;
+  text-align:left;
+  transition:border-color 0.3s,transform 0.3s;
+}
+.testi-card:hover{border-color:var(--mauve);transform:translateY(-3px)}
+.testi-card__quote{
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-style:italic;
+  color:var(--bone);
+  line-height:1.7;
+  margin-bottom:1.2rem;
+}
+.testi-card__author{
+  display:flex;align-items:center;gap:1rem;
+}
+.testi-card__avatar{
+  width:42px;height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  flex-shrink:0;
+}
+.testi-card__name{
+  font-family:var(--sans);
+  font-size:0.82rem;
+  font-weight:600;
+  color:var(--white);
+}
+.testi-card__role{
+  font-family:var(--sans);
+  font-size:0.7rem;
+  color:var(--mauve-light);
+  margin-top:0.1rem;
+}
+.stars{color:var(--mauve-light);font-size:0.8rem;letter-spacing:0.08em;margin-bottom:1rem}
+@media(min-width:640px){
+  .testi__cards{flex-direction:row}
+  .testi-card{flex:1}
+}
+
+/* ── CONTACT ── */
+.contact{
+  background:var(--bone);
+  padding:5rem 1.8rem;
+  position:relative;
+  overflow:hidden;
+}
+.contact::before{
+  content:'';
+  position:absolute;
+  top:-60px;left:-60px;
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(155,126,140,0.18) 0%,transparent 70%);
+  border-radius:50%;
+}
+.contact__inner{
+  max-width:940px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:3.5rem;
+}
+.contact__info{}
+.contact__label{
+  font-family:var(--sans);
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--mauve);
+  margin-bottom:1.2rem;
+}
+.contact__title{
+  font-family:var(--serif);
+  font-size:clamp(1.9rem,4vw,3rem);
+  font-weight:300;
+  line-height:1.2;
+  margin-bottom:1.8rem;
+}
+.contact__title em{font-style:italic;color:var(--mauve)}
+.contact__details{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+.contact__item{
+  display:flex;align-items:flex-start;gap:0.9rem;
+  font-size:0.9rem;
+  color:var(--slate);
+  line-height:1.6;
+}
+.contact__item-icon{
+  color:var(--mauve);
+  flex-shrink:0;
+  margin-top:2px;
+}
+.contact__socials{
+  display:flex;gap:1rem;margin-top:1.8rem;
+}
+.social-btn{
+  width:40px;height:40px;
+  border-radius:50%;
+  background:rgba(155,126,140,0.15);
+  border:1px solid rgba(155,126,140,0.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--mauve);
+  cursor:pointer;
+  text-decoration:none;
+  transition:background 0.2s,border-color 0.2s,transform 0.2s;
+}
+.social-btn:hover{background:var(--mauve);color:var(--white);transform:translateY(-2px)}
+
+/* Contact form */
+.contact__form{flex:1}
+.form-row{display:flex;flex-direction:column;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:0.45rem}
+.form-group label{
+  font-family:var(--sans);
+  font-size:0.7rem;
+  font-weight:600;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--slate);
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  font-family:var(--thai),var(--sans);
+  font-size:0.92rem;
+  color:var(--near-black);
+  background:rgba(255,255,255,0.7);
+  border:1px solid rgba(74,85,104,0.25);
+  padding:0.85rem 1rem;
+  border-radius:2px;
+  outline:none;
+  transition:border-color 0.2s,background 0.2s;
+  min-height:44px;
+  appearance:none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:var(--mauve);
+  background:var(--white);
+}
+.form-group textarea{min-height:110px;resize:vertical;line-height:1.7}
+.form-submit{
+  width:100%;
+  font-family:var(--sans);
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--white);
+  background:var(--near-black);
+  border:none;
+  padding:1.1rem;
+  border-radius:2px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:0.5rem;
+  transition:background 0.2s,transform 0.2s;
+  min-height:52px;
+}
+.form-submit:hover{background:var(--mauve);transform:translateY(-2px)}
+
+@media(min-width:640px){
+  .form-row{flex-direction:row}
+  .form-row .form-group{flex:1}
+}
+@media(min-width:768px){
+  .contact__inner{flex-direction:row;gap:5rem}
+  .contact__info{flex:1;max-width:380px}
+  .contact__form{flex:1.3}
+}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--near-black);
+  padding:3.5rem 1.8rem 2rem;
+}
+.footer__inner{
+  max-width:1100px;
+  margin:0 auto;
+}
+.footer__top{
+  display:flex;
+  flex-direction:column;
+  gap:2.5rem;
+  padding-bottom:2.5rem;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:2rem;
+}
+.footer__brand{}
+.footer__logo{
+  font-family:var(--serif);
+  font-size:1.5rem;
+  font-weight:400;
+  color:var(--bone);
+  letter-spacing:0.04em;
+  margin-bottom:0.8rem;
+}
+.footer__logo span{color:var(--mauve-light)}
+.footer__tagline{
+  font-size:0.85rem;
+  color:rgba(237,232,223,0.55);
+  line-height:1.8;
+  max-width:280px;
+}
+.footer__cols{
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+}
+.footer__col-title{
+  font-family:var(--sans);
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--mauve-light);
+  margin-bottom:1rem;
+}
+.footer__col-links{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:0.65rem;
+}
+.footer__col-links a{
+  font-size:0.88rem;
+  color:rgba(237,232,223,0.55);
+  text-decoration:none;
+  transition:color 0.2s;
+  padding:0.2rem 0;
+  display:block;
+}
+.footer__col-links a:hover{color:var(--bone)}
+.footer__bottom{
+  display:flex;
+  flex-direction:column;
+  gap:0.8rem;
+  align-items:flex-start;
+  font-family:var(--sans);
+  font-size:0.75rem;
+  color:rgba(237,232,223,0.35);
+}
+@media(min-width:640px){
+  .footer__cols{flex-direction:row;gap:4rem}
+}
+@media(min-width:768px){
+  .footer__top{flex-direction:row;justify-content:space-between;align-items:flex-start}
+  .footer__bottom{flex-direction:row;justify-content:space-between;align-items:center}
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Stagger for children */
+.reveal-stagger > *{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.reveal-stagger.visible > *:nth-child(1){transition-delay:0s;opacity:1;transform:none}
+.reveal-stagger.visible > *:nth-child(2){transition-delay:0.1s;opacity:1;transform:none}
+.reveal-stagger.visible > *:nth-child(3){transition-delay:0.2s;opacity:1;transform:none}
+.reveal-stagger.visible > *:nth-child(4){transition-delay:0.3s;opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="nav" id="navbar">
+  <a class="nav__logo" href="#">Soho <span>Properties</span></a>
+  <ul class="nav__links">
+    <li><a href="#properties" data-lang-th="อสังหาริมทรัพย์" data-lang-en="Properties">อสังหาริมทรัพย์</a></li>
+    <li><a href="#neighborhoods" data-lang-th="ย่านที่อยู่อาศัย" data-lang-en="Neighborhoods">ย่านที่อยู่อาศัย</a></li>
+    <li><a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a></li>
+    <li><a href="#contact" data-lang-th="ติดต่อเรา" data-lang-en="Contact">ติดต่อเรา</a></li>
+  </ul>
+  <div class="nav__right">
+    <button class="lang-sw" aria-label="Switch language">
+      <i data-lucide="globe" width="14" height="14"></i>
+      <span class="lang-sw__label">TH</span>
+    </button>
+    <a class="nav__cta" href="#contact" data-lang-th="ปรึกษาฟรี" data-lang-en="Free Consult">ปรึกษาฟรี</a>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <i data-lucide="menu" width="22" height="22"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="nav__mobile" id="mobileMenu">
+  <button class="nav__mobile__close" id="menuClose" aria-label="Close">
+    <i data-lucide="x" width="28" height="28"></i>
+  </button>
+  <a href="#properties" data-lang-th="อสังหาริมทรัพย์" data-lang-en="Properties">อสังหาริมทรัพย์</a>
+  <a href="#neighborhoods" data-lang-th="ย่านที่อยู่อาศัย" data-lang-en="Neighborhoods">ย่านที่อยู่อาศัย</a>
+  <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+  <a href="#contact" data-lang-th="ติดต่อเรา" data-lang-en="Contact">ติดต่อเรา</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <p class="hero__label" data-lang-th="เว็บไซต์อสังหาริมทรัพย์ชั้นนำในกรุงเทพฯ" data-lang-en="Bangkok's Finest Property Listing Website">เว็บไซต์อสังหาริมทรัพย์ชั้นนำในกรุงเทพฯ</p>
+    <h1 class="hero__h1"><span data-lang-th="ค้นพบบ้านในฝัน" data-lang-en="Discover Your Dream">ค้นพบบ้านในฝัน</span><br><em data-lang-th="กลางหัวใจกรุงเทพฯ" data-lang-en="In the Heart of Bangkok">กลางหัวใจกรุงเทพฯ</em></h1>
+    <p class="hero__sub" data-lang-th="คอนโด บ้าน และอาคารพาณิชย์ระดับพรีเมียม คัดสรรมาเพื่อคุณโดยเฉพาะ" data-lang-en="Premium condos, residences, and commercial spaces — curated for discerning buyers, investors, and expats.">คอนโด บ้าน และอาคารพาณิชย์ระดับพรีเมียม คัดสรรมาเพื่อคุณโดยเฉพาะ</p>
+    <div class="hero__actions">
+      <a class="btn-primary" href="#search" data-lang-th="ค้นหาอสังหาฯ" data-lang-en="Search Properties">ค้นหาอสังหาฯ</a>
+      <a class="btn-outline" href="#contact" data-lang-th="ปรึกษาผู้เชี่ยวชาญ" data-lang-en="Speak to an Expert">ปรึกษาผู้เชี่ยวชาญ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEARCH STRIP ══ -->
+<div class="search-strip" id="search">
+  <div class="search-strip__inner">
+    <span class="search-strip__label" data-lang-th="ค้นหาอสังหาริมทรัพย์" data-lang-en="Search Properties">ค้นหาอสังหาริมทรัพย์</span>
+    <div class="search-form">
+      <input type="text" placeholder="สถานที่ / ย่าน / ชื่อโครงการ" id="searchInput"
+        data-lang-th-placeholder="สถานที่ / ย่าน / ชื่อโครงการ"
+        data-lang-en-placeholder="Location / Neighborhood / Project name">
+      <div class="search-form__row">
+        <select id="propType">
+          <option value="" data-lang-th="ประเภท" data-lang-en="Type">ประเภท</option>
+          <option data-lang-th="คอนโด" data-lang-en="Condo">คอนโด</option>
+          <option data-lang-th="บ้าน" data-lang-en="House">บ้าน</option>
+          <option data-lang-th="อพาร์ตเมนต์" data-lang-en="Apartment">อพาร์ตเมนต์</option>
+          <option data-lang-th="ทาวน์เฮาส์" data-lang-en="Townhouse">ทาวน์เฮาส์</option>
+          <option data-lang-th="วิลล่า" data-lang-en="Villa">วิลล่า</option>
+          <option data-lang-th="สำนักงาน" data-lang-en="Office">สำนักงาน</option>
+          <option data-lang-th="โรงแรม/รีสอร์ต" data-lang-en="Hotel/Resort">โรงแรม/รีสอร์ต</option>
+        </select>
+        <select id="propIntent">
+          <option value="" data-lang-th="ซื้อ / เช่า" data-lang-en="Buy / Rent">ซื้อ / เช่า</option>
+          <option data-lang-th="ซื้อ" data-lang-en="Buy">ซื้อ</option>
+          <option data-lang-th="เช่า" data-lang-en="Rent">เช่า</option>
+          <option data-lang-th="ลงทุน" data-lang-en="Invest">ลงทุน</option>
+        </select>
+      </div>
+      <button class="search-btn">
+        <i data-lucide="search" width="16" height="16"></i>
+        <span data-lang-th="ค้นหา" data-lang-en="Search">ค้นหา</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STATS ══ -->
+<div class="stats-band reveal-stagger">
+  <div class="stats-band__inner">
+    <div class="stat">
+      <div class="stat__num">3,200<span style="font-size:0.55em">+</span></div>
+      <div class="stat__label" data-lang-th="อสังหาริมทรัพย์ในระบบ" data-lang-en="Listed Properties">อสังหาริมทรัพย์ในระบบ</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num">18</div>
+      <div class="stat__label" data-lang-th="ย่านสำคัญในกรุงเทพฯ" data-lang-en="Bangkok Districts">ย่านสำคัญในกรุงเทพฯ</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num">98<span style="font-size:0.55em">%</span></div>
+      <div class="stat__label" data-lang-th="ลูกค้าพึงพอใจ" data-lang-en="Client Satisfaction">ลูกค้าพึงพอใจ</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num">12</div>
+      <div class="stat__label" data-lang-th="ปีประสบการณ์" data-lang-en="Years Experience">ปีประสบการณ์</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HOT PROPERTIES ══ -->
+<section class="hot-props" id="properties">
+  <div class="hot-props__header reveal">
+    <div>
+      <p class="label" data-lang-th="อสังหาฯ แนะนำ" data-lang-en="Hot Properties">อสังหาฯ แนะนำ</p>
+      <h2 class="hot-props__title"><span data-lang-th="ทรัพย์สินยอดนิยม" data-lang-en="Featured Listings">ทรัพย์สินยอดนิยม</span><br><em data-lang-th="ประจำเดือนนี้" data-lang-en="This Month">ประจำเดือนนี้</em></h2>
+    </div>
+    <a href="#" class="hot-props__link" data-lang-th="ดูทั้งหมด" data-lang-en="View All">
+      <span data-lang-th="ดูทั้งหมด" data-lang-en="View All">ดูทั้งหมด</span>
+      <i data-lucide="arrow-right" width="14" height="14"></i>
+    </a>
+  </div>
+  <div class="props-list">
+    <!-- Panorama 1 -->
+    <div class="panorama reveal">
+      <img class="panorama__img"
+        src="https://images.unsplash.com/photo-1646974400439-321c4a9240b9?w=1400&h=600&fit=crop"
+        alt="Luxury condo living room with city view">
+      <div class="panorama__overlay"></div>
+      <span class="panorama__badge" data-lang-th="ขาย" data-lang-en="For Sale">ขาย</span>
+      <div class="panorama__content">
+        <span class="panorama__tag" data-lang-th="คอนโด · สุขุมวิท 11" data-lang-en="Condo · Sukhumvit 11">คอนโด · สุขุมวิท 11</span>
+        <h3 class="panorama__title" data-lang-th="The Lofts Asoke — วิวเมืองชั้นสูง" data-lang-en="The Lofts Asoke — High-Floor City View">The Lofts Asoke — วิวเมืองชั้นสูง</h3>
+        <div class="panorama__meta">
+          <span class="panorama__price">฿ 18,500,000</span>
+          <div class="panorama__details">
+            <span><i data-lucide="bed-double" width="13" height="13"></i> 2</span>
+            <span><i data-lucide="bath" width="13" height="13"></i> 2</span>
+            <span><i data-lucide="maximize" width="13" height="13"></i> 82 m²</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panorama 2 -->
+    <div class="panorama reveal">
+      <img class="panorama__img"
+        src="https://images.unsplash.com/photo-1768853329042-b0445ee6073c?w=1400&h=600&fit=crop"
+        alt="Cityscape viewed through window at sunset">
+      <div class="panorama__overlay"></div>
+      <span class="panorama__badge" style="background:var(--slate)" data-lang-th="เช่า" data-lang-en="For Rent">เช่า</span>
+      <div class="panorama__content">
+        <span class="panorama__tag" data-lang-th="คอนโด · ทองหล่อ" data-lang-en="Condo · Thonglor">คอนโด · ทองหล่อ</span>
+        <h3 class="panorama__title" data-lang-th="Laviq Sukhumvit 57 — เพนต์เฮาส์วิวพาโนรามา" data-lang-en="Laviq Sukhumvit 57 — Panoramic Penthouse">Laviq Sukhumvit 57 — เพนต์เฮาส์วิวพาโนรามา</h3>
+        <div class="panorama__meta">
+          <span class="panorama__price">฿ 95,000 / เดือน</span>
+          <div class="panorama__details">
+            <span><i data-lucide="bed-double" width="13" height="13"></i> 3</span>
+            <span><i data-lucide="bath" width="13" height="13"></i> 3</span>
+            <span><i data-lucide="maximize" width="13" height="13"></i> 148 m²</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panorama 3 -->
+    <div class="panorama reveal">
+      <img class="panorama__img"
+        src="https://images.unsplash.com/photo-1760503850813-39cb79674e82?w=1400&h=600&fit=crop"
+        alt="Modern building facade at dusk">
+      <div class="panorama__overlay"></div>
+      <span class="panorama__badge" style="background:#2D6A4F" data-lang-th="ลงทุน" data-lang-en="Investment">ลงทุน</span>
+      <div class="panorama__content">
+        <span class="panorama__tag" data-lang-th="อาคารสำนักงาน · สีลม" data-lang-en="Office · Silom">อาคารสำนักงาน · สีลม</span>
+        <h3 class="panorama__title" data-lang-th="One Bangkok Tower — พื้นที่พาณิชย์ระดับ Grade A" data-lang-en="One Bangkok Tower — Grade A Commercial Space">One Bangkok Tower — พื้นที่พาณิชย์ระดับ Grade A</h3>
+        <div class="panorama__meta">
+          <span class="panorama__price">฿ 320,000,000</span>
+          <div class="panorama__details">
+            <span><i data-lucide="maximize" width="13" height="13"></i> 1,240 m²</span>
+            <span><i data-lucide="trending-up" width="13" height="13"></i> <span data-lang-th="ผลตอบแทน 7%+" data-lang-en="7%+ Yield">ผลตอบแทน 7%+</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how" id="services">
+  <div class="how__inner">
+    <div class="section__header reveal">
+      <p class="label" data-lang-th="กระบวนการทำงาน" data-lang-en="How It Works">กระบวนการทำงาน</p>
+      <h2 class="section__title"><span data-lang-th="ง่ายกว่าที่คิด " data-lang-en="Simpler Than You Think — ">ง่ายกว่าที่คิด </span><em data-lang-th="ใน 4 ขั้นตอน" data-lang-en="In 4 Steps">ใน 4 ขั้นตอน</em></h2>
+    </div>
+    <div class="how__steps">
+      <div class="step">
+        <div class="step__num">01</div>
+        <div class="step__body">
+          <h3 class="step__title" data-lang-th="แจ้งความต้องการ" data-lang-en="Tell Us What You Need">แจ้งความต้องการ</h3>
+          <p class="step__desc" data-lang-th="บอกรายละเอียดที่คุณต้องการ ไม่ว่าจะเป็นย่าน งบประมาณ จำนวนห้อง หรือรูปแบบชีวิตที่ชื่นชอบ ทีมผู้เชี่ยวชาญของเราจะเริ่มค้นหาทันที" data-lang-en="Share your preferences — neighborhood, budget, bedroom count, and lifestyle. Our specialists begin curating options immediately.">บอกรายละเอียดที่คุณต้องการ ไม่ว่าจะเป็นย่าน งบประมาณ จำนวนห้อง หรือรูปแบบชีวิตที่ชื่นชอบ ทีมผู้เชี่ยวชาญของเราจะเริ่มค้นหาทันที</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">02</div>
+        <div class="step__body">
+          <h3 class="step__title" data-lang-th="รับรายการทรัพย์สินที่คัดสรร" data-lang-en="Receive a Curated Shortlist">รับรายการทรัพย์สินที่คัดสรร</h3>
+          <p class="step__desc" data-lang-th="เราส่งรายการอสังหาริมทรัพย์ที่ตรงกับความต้องการของคุณ พร้อมข้อมูลเชิงลึก ราคาตลาด และข้อมูลเปรียบเทียบย่านใกล้เคียง" data-lang-en="We send you a tailored selection with in-depth insights, market pricing, and neighborhood comparisons — so you can decide with confidence.">เราส่งรายการอสังหาริมทรัพย์ที่ตรงกับความต้องการของคุณ พร้อมข้อมูลเชิงลึก ราคาตลาด และข้อมูลเปรียบเทียบย่านใกล้เคียง</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">03</div>
+        <div class="step__body">
+          <h3 class="step__title" data-lang-th="ชมอสังหาริมทรัพย์" data-lang-en="View the Properties">ชมอสังหาริมทรัพย์</h3>
+          <p class="step__desc" data-lang-th="เข้าชมได้ทั้งแบบออนไลน์ผ่าน virtual tour หรือนัดชมสถานที่จริงกับเอเจนต์ผู้เชี่ยวชาญของเรา พร้อมให้คำแนะนำตลอดการเยี่ยมชม" data-lang-en="Tour virtually or schedule in-person visits with one of our agents, who provide guidance and market context throughout.">เข้าชมได้ทั้งแบบออนไลน์ผ่าน virtual tour หรือนัดชมสถานที่จริงกับเอเจนต์ผู้เชี่ยวชาญของเรา พร้อมให้คำแนะนำตลอดการเยี่ยมชม</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__num">04</div>
+        <div class="step__body">
+          <h3 class="step__title" data-lang-th="ปิดดีล — เราดูแลทุกขั้นตอน" data-lang-en="Close the Deal — We Handle Everything">ปิดดีล — เราดูแลทุกขั้นตอน</h3>
+          <p class="step__desc" data-lang-th="ทีมกฎหมายและเอกสารของเราพร้อมดูแลขั้นตอนโอนกรรมสิทธิ์ สัญญาเช่า และเอกสารทุกชนิดให้ครบถ้วน ราบรื่น ไม่มีความยุ่งยาก" data-lang-en="Our legal and documentation team manages title transfers, lease agreements, and all paperwork — smooth, transparent, and stress-free.">ทีมกฎหมายและเอกสารของเราพร้อมดูแลขั้นตอนโอนกรรมสิทธิ์ สัญญาเช่า และเอกสารทุกชนิดให้ครบถ้วน ราบรื่น ไม่มีความยุ่งยาก</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEIGHBORHOODS ══ -->
+<section class="hoods" id="neighborhoods">
+  <div class="hoods__header reveal">
+    <p class="label" style="color:var(--mauve-light)" data-lang-th="คู่มือย่านที่อยู่อาศัย" data-lang-en="Neighborhood Guides">คู่มือย่านที่อยู่อาศัย</p>
+    <h2 class="hoods__title"><span data-lang-th="ค้นหาย่านที่" data-lang-en="Find the Neighborhood">ค้นหาย่านที่</span><br><em data-lang-th="เหมาะกับคุณ" data-lang-en="Made for You">เหมาะกับคุณ</em></h2>
+  </div>
+  <div class="hoods__scroll">
+    <div class="hood-card">
+      <img class="hood-card__img" src="https://images.unsplash.com/photo-1589932896376-5244c8898269?w=520&h=640&fit=crop" alt="Sukhumvit Bangkok street">
+      <div class="hood-card__overlay"></div>
+      <div class="hood-card__body">
+        <div class="hood-card__name" data-lang-th="สุขุมวิท" data-lang-en="Sukhumvit">สุขุมวิท</div>
+        <div class="hood-card__tag" data-lang-th="คอสโมโพลิแทน · ไลฟ์สไตล์" data-lang-en="Cosmopolitan · Lifestyle">คอสโมโพลิแทน · ไลฟ์สไตล์</div>
+      </div>
+    </div>
+    <div class="hood-card">
+      <img class="hood-card__img" src="https://images.unsplash.com/photo-1531169628939-e84f860fa5d6?w=520&h=640&fit=crop" alt="Bangkok Silom night">
+      <div class="hood-card__overlay"></div>
+      <div class="hood-card__body">
+        <div class="hood-card__name" data-lang-th="สีลม / สาทร" data-lang-en="Silom / Sathorn">สีลม / สาทร</div>
+        <div class="hood-card__tag" data-lang-th="ธุรกิจ · ไฟแนนซ์" data-lang-en="Business · Finance">ธุรกิจ · ไฟแนนซ์</div>
+      </div>
+    </div>
+    <div class="hood-card">
+      <img class="hood-card__img" src="https://images.unsplash.com/photo-1550814669-a61a9167084c?w=520&h=640&fit=crop" alt="Bangkok night cityscape">
+      <div class="hood-card__overlay"></div>
+      <div class="hood-card__body">
+        <div class="hood-card__name" data-lang-th="ทองหล่อ / เอกมัย" data-lang-en="Thonglor / Ekkamai">ทองหล่อ / เอกมัย</div>
+        <div class="hood-card__tag" data-lang-th="ทันสมัย · ร้านอาหารชั้นนำ" data-lang-en="Trendy · Dining Scene">ทันสมัย · ร้านอาหารชั้นนำ</div>
+      </div>
+    </div>
+    <div class="hood-card">
+      <img class="hood-card__img" src="https://images.unsplash.com/photo-1693320012255-ea011081fd73?w=520&h=640&fit=crop" alt="Bangkok aerial view">
+      <div class="hood-card__overlay"></div>
+      <div class="hood-card__body">
+        <div class="hood-card__name" data-lang-th="อโศก / รัชดาฯ" data-lang-en="Asoke / Ratchada">อโศก / รัชดาฯ</div>
+        <div class="hood-card__tag" data-lang-th="ศูนย์กลาง · การเดินทางสะดวก" data-lang-en="Central · Well-Connected">ศูนย์กลาง · การเดินทางสะดวก</div>
+      </div>
+    </div>
+    <div class="hood-card">
+      <img class="hood-card__img" src="https://images.unsplash.com/photo-1629491384429-d6d5ba65e04b?w=520&h=640&fit=crop" alt="Bangkok riverside greenery">
+      <div class="hood-card__overlay"></div>
+      <div class="hood-card__body">
+        <div class="hood-card__name" data-lang-th="ริมแม่น้ำ / บางรัก" data-lang-en="Riverside / Bangrak">ริมแม่น้ำ / บางรัก</div>
+        <div class="hood-card__tag" data-lang-th="มีเสน่ห์ · ประวัติศาสตร์" data-lang-en="Charming · Heritage">มีเสน่ห์ · ประวัติศาสตร์</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROPERTY TYPES ══ -->
+<section class="prop-types">
+  <div class="prop-types__inner">
+    <div class="section__header reveal" style="text-align:left;margin-bottom:0">
+      <p class="label" data-lang-th="ประเภทอสังหาริมทรัพย์" data-lang-en="Property Categories">ประเภทอสังหาริมทรัพย์</p>
+      <h2 class="section__title"><span data-lang-th="ทุกรูปแบบการอยู่อาศัย" data-lang-en="Every Lifestyle Need —">ทุกรูปแบบการอยู่อาศัย</span><br><em data-lang-th="ครบในที่เดียว" data-lang-en="Under One Roof">ครบในที่เดียว</em></h2>
+    </div>
+    <div style="height:3.5rem"></div>
+
+    <div class="prop-row">
+      <img class="prop-row__img"
+        src="https://images.unsplash.com/photo-1724949287786-b40a853afb95?w=800&h=560&fit=crop"
+        alt="Bangkok luxury condominium">
+      <div class="prop-row__body">
+        <span class="prop-row__type" data-lang-th="ที่อยู่อาศัย" data-lang-en="Residential">ที่อยู่อาศัย</span>
+        <h3 class="prop-row__title"><span data-lang-th="คอนโด & อพาร์ตเมนต์" data-lang-en="Condos & Apartments —">คอนโด & อพาร์ตเมนต์</span><br><em data-lang-th="เลือกแล้วเลือกเลย" data-lang-en="The Urban Standard">เลือกแล้วเลือกเลย</em></h3>
+        <p class="prop-row__desc" data-lang-th="คอนโดมิเนียมระดับพรีเมียมในทำเลทองใจกลางเมือง พร้อมสิ่งอำนวยความสะดวกครบครัน วิวเมืองแบบพาโนรามา และความปลอดภัยสูงสุด เหมาะสำหรับผู้ที่ต้องการสิ่งที่ดีที่สุดในชีวิตเมือง" data-lang-en="Premium condominiums in prime Bangkok locations, with full amenities, panoramic city views, and top-tier security. The definitive urban lifestyle choice.">คอนโดมิเนียมระดับพรีเมียมในทำเลทองใจกลางเมือง พร้อมสิ่งอำนวยความสะดวกครบครัน วิวเมืองแบบพาโนรามา และความปลอดภัยสูงสุด</p>
+        <a class="prop-row__btn" href="#" data-lang-th="ดูคอนโดทั้งหมด" data-lang-en="Browse Condos">
+          <span data-lang-th="ดูคอนโดทั้งหมด" data-lang-en="Browse Condos">ดูคอนโดทั้งหมด</span>
+          <i data-lucide="arrow-right" width="14" height="14"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="prop-row prop-row--reverse">
+      <img class="prop-row__img"
+        src="https://images.unsplash.com/photo-1611520378889-bcdd8acee69d?w=800&h=560&fit=crop"
+        alt="Bangkok house with garden">
+      <div class="prop-row__body">
+        <span class="prop-row__type" data-lang-th="ที่อยู่อาศัย" data-lang-en="Residential">ที่อยู่อาศัย</span>
+        <h3 class="prop-row__title"><span data-lang-th="บ้านเดี่ยว ทาวน์เฮาส์" data-lang-en="Houses, Townhouses">บ้านเดี่ยว ทาวน์เฮาส์</span><br><em data-lang-th="& วิลล่า" data-lang-en="& Villas">& วิลล่า</em></h3>
+        <p class="prop-row__desc" data-lang-th="บ้านที่มีพื้นที่กว้างขวาง สวน และความเป็นส่วนตัว เหมาะสำหรับครอบครัวและผู้ที่ต้องการพื้นที่พักผ่อนในกรุงเทพฯ รวมถึงวิลล่าสุดหรูในย่านเงียบสงบ" data-lang-en="Spacious homes with gardens and privacy for families and those seeking a gentler pace within Bangkok — including exclusive villas in tranquil compounds.">บ้านที่มีพื้นที่กว้างขวาง สวน และความเป็นส่วนตัว เหมาะสำหรับครอบครัวและผู้ที่ต้องการพื้นที่พักผ่อนในกรุงเทพฯ</p>
+        <a class="prop-row__btn" href="#" data-lang-th="ดูบ้านทั้งหมด" data-lang-en="Browse Houses">
+          <span data-lang-th="ดูบ้านทั้งหมด" data-lang-en="Browse Houses">ดูบ้านทั้งหมด</span>
+          <i data-lucide="arrow-right" width="14" height="14"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="prop-row">
+      <img class="prop-row__img"
+        src="https://images.unsplash.com/photo-1624270300589-66ebf2a9f884?w=800&h=560&fit=crop"
+        alt="Commercial office building Bangkok">
+      <div class="prop-row__body">
+        <span class="prop-row__type" data-lang-th="พาณิชย์" data-lang-en="Commercial">พาณิชย์</span>
+        <h3 class="prop-row__title"><span data-lang-th="สำนักงาน ร้านค้า" data-lang-en="Offices, Retail">สำนักงาน ร้านค้า</span><br><em data-lang-th="& โรงแรม" data-lang-en="& Hotels">& โรงแรม</em></h3>
+        <p class="prop-row__desc" data-lang-th="อาคารสำนักงาน ร้านค้า คลังสินค้า และโรงแรมในทำเลยุทธศาสตร์ทั่วกรุงเทพฯ เหมาะสำหรับนักลงทุนและธุรกิจที่ต้องการขยายตัวในตลาดไทย" data-lang-en="Office buildings, retail units, warehouses, and hotels in strategic Bangkok locations. Ideal for investors and businesses expanding in the Thai market.">อาคารสำนักงาน ร้านค้า คลังสินค้า และโรงแรมในทำเลยุทธศาสตร์ทั่วกรุงเทพฯ เหมาะสำหรับนักลงทุนและธุรกิจที่ต้องการขยายตัวในตลาดไทย</p>
+        <a class="prop-row__btn" href="#" data-lang-th="ดูอสังหาฯ พาณิชย์" data-lang-en="Browse Commercial">
+          <span data-lang-th="ดูอสังหาฯ พาณิชย์" data-lang-en="Browse Commercial">ดูอสังหาฯ พาณิชย์</span>
+          <i data-lucide="arrow-right" width="14" height="14"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY SOHO ══ -->
+<section class="why">
+  <div class="why__inner">
+    <div class="section__header reveal" style="text-align:left">
+      <p class="label" data-lang-th="ทำไมต้องเลือกเรา" data-lang-en="Why Choose Us">ทำไมต้องเลือกเรา</p>
+      <h2 class="section__title"><span data-lang-th="เหตุผลที่ Soho Properties" data-lang-en="Why Soho Properties">เหตุผลที่ Soho Properties</span><br><em data-lang-th="เป็นตัวเลือกอันดับหนึ่ง" data-lang-en="Is Bangkok's First Choice">เป็นตัวเลือกอันดับหนึ่ง</em></h2>
+    </div>
+    <div class="accordion reveal">
+      <div class="acc-item open">
+        <button class="acc-trigger">
+          <span class="acc-trigger__title" data-lang-th="ความเชี่ยวชาญตลาดกรุงเทพฯ อย่างลึกซึ้ง" data-lang-en="Deep Bangkok Market Expertise">ความเชี่ยวชาญตลาดกรุงเทพฯ อย่างลึกซึ้ง</span>
+          <i data-lucide="plus" width="20" height="20" class="acc-trigger__icon"></i>
+        </button>
+        <div class="acc-body" style="max-height:200px">
+          <div class="acc-body__inner" data-lang-th="ด้วยประสบการณ์กว่า 12 ปีในตลาดอสังหาริมทรัพย์กรุงเทพฯ เราเข้าใจทุกย่าน ทุกโครงการ และแนวโน้มราคาในทุกช่วงตลาด ทีมงานของเราสามารถให้ข้อมูลเชิงลึกที่แม่นยำเพื่อช่วยให้คุณตัดสินใจได้อย่างมั่นใจ" data-lang-en="With over 12 years in Bangkok's real estate market, we understand every district, every project, and every price cycle. Our team delivers precise insights that turn a complex market into a clear decision.">ด้วยประสบการณ์กว่า 12 ปีในตลาดอสังหาริมทรัพย์กรุงเทพฯ เราเข้าใจทุกย่าน ทุกโครงการ และแนวโน้มราคาในทุกช่วงตลาด ทีมงานของเราสามารถให้ข้อมูลเชิงลึกที่แม่นยำเพื่อช่วยให้คุณตัดสินใจได้อย่างมั่นใจ</div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-trigger__title" data-lang-th="บริการครบวงจรสำหรับชาวต่างชาติ" data-lang-en="Full-Service Support for Expats & Foreigners">บริการครบวงจรสำหรับชาวต่างชาติ</span>
+          <i data-lucide="plus" width="20" height="20" class="acc-trigger__icon"></i>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body__inner" data-lang-th="เราให้บริการเป็นภาษาอังกฤษ ไทย จีน และญี่ปุ่น พร้อมผู้เชี่ยวชาญด้านกฎหมายที่ดินสำหรับชาวต่างชาติ ขั้นตอนการซื้อและเช่าสำหรับคนต่างด้าวในไทยนั้นมีความซับซ้อน เราจะช่วยให้คุณผ่านทุกขั้นตอนได้ราบรื่น" data-lang-en="We serve clients in English, Thai, Chinese, and Japanese, with legal specialists in Thai foreign property ownership. We navigate every regulation so you don't have to.">เราให้บริการเป็นภาษาอังกฤษ ไทย จีน และญี่ปุ่น พร้อมผู้เชี่ยวชาญด้านกฎหมายที่ดินสำหรับชาวต่างชาติ</div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-trigger__title" data-lang-th="อสังหาฯ เพื่อสัตว์เลี้ยง" data-lang-en="Pet-Friendly Properties">อสังหาฯ เพื่อสัตว์เลี้ยง</span>
+          <i data-lucide="plus" width="20" height="20" class="acc-trigger__icon"></i>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body__inner" data-lang-th="เราคัดสรรรายชื่ออสังหาริมทรัพย์ที่เป็นมิตรกับสัตว์เลี้ยงอย่างละเอียด ไม่ว่าคุณจะมีสุนัข แมว หรือสัตว์เลี้ยงชนิดอื่น เราช่วยให้คุณหาที่อยู่ที่ต้อนรับคนทั้งครอบครัว" data-lang-en="We maintain a carefully verified list of pet-friendly properties across Bangkok. Whether you have a dog, cat, or other companion, we find a home that welcomes your whole family.">เราคัดสรรรายชื่ออสังหาริมทรัพย์ที่เป็นมิตรกับสัตว์เลี้ยงอย่างละเอียด</div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-trigger__title" data-lang-th="การลงทุนอสังหาฯ ผลตอบแทนสูง" data-lang-en="High-Yield Investment Properties">การลงทุนอสังหาฯ ผลตอบแทนสูง</span>
+          <i data-lucide="plus" width="20" height="20" class="acc-trigger__icon"></i>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body__inner" data-lang-th="นักลงทุนทั้งในและต่างประเทศไว้วางใจเราเพื่อค้นหาอสังหาริมทรัพย์ที่ให้ผลตอบแทนสูง เราวิเคราะห์ตลาดเช่า อัตราการเติบโต และโครงการพัฒนาในอนาคตเพื่อช่วยให้คุณลงทุนได้อย่างชาญฉลาด" data-lang-en="Domestic and international investors trust us to identify high-yield assets. We analyze rental markets, capital growth rates, and upcoming developments to maximize your return.">นักลงทุนทั้งในและต่างประเทศไว้วางใจเราเพื่อค้นหาอสังหาริมทรัพย์ที่ให้ผลตอบแทนสูง</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURED LISTING ══ -->
+<section class="featured">
+  <div class="featured__bg"></div>
+  <div class="featured__overlay"></div>
+  <div class="featured__content reveal">
+    <div class="featured__tag">
+      <i data-lucide="star" width="12" height="12"></i>
+      <span data-lang-th="อสังหาฯ แนะนำพิเศษ" data-lang-en="Editor's Pick">อสังหาฯ แนะนำพิเศษ</span>
+    </div>
+    <h2 class="featured__title">Sky Residences<br>Sukhumvit 39 —<br><em data-lang-th="เหนือระดับทุกมิติ" data-lang-en="Above Every Standard">เหนือระดับทุกมิติ</em></h2>
+    <div class="featured__spec">
+      <div class="featured__spec-item">
+        <span class="featured__spec-val">4</span>
+        <span class="featured__spec-key" data-lang-th="ห้องนอน" data-lang-en="Bedrooms">ห้องนอน</span>
+      </div>
+      <div class="featured__spec-item">
+        <span class="featured__spec-val">320</span>
+        <span class="featured__spec-key">m²</span>
+      </div>
+      <div class="featured__spec-item">
+        <span class="featured__spec-val">52F</span>
+        <span class="featured__spec-key" data-lang-th="ชั้น" data-lang-en="Floor">ชั้น</span>
+      </div>
+    </div>
+    <div class="featured__price">฿ 85,000,000</div>
+    <a class="btn-primary" href="#contact" data-lang-th="สอบถามรายละเอียด" data-lang-en="Enquire Now">สอบถามรายละเอียด</a>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testi">
+  <div class="testi__inner">
+    <h2 class="testi__title reveal"><span data-lang-th="เสียงจาก" data-lang-en="What Our">เสียงจาก</span><br><em data-lang-th="ลูกค้าของเรา" data-lang-en="Clients Say">ลูกค้าของเรา</em></h2>
+    <div class="testi__cards reveal-stagger">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-card__quote" data-lang-th="&ldquo;Soho Properties ช่วยให้ผมหาคอนโดในสุขุมวิทได้ภายในสัปดาห์เดียว ทีมงานเป็นมืออาชีพและตอบคำถามทุกข้อได้อย่างละเอียด แนะนำมากครับ&rdquo;" data-lang-en="&ldquo;Soho Properties found me the perfect Sukhumvit condo within a week. Professional, knowledgeable, and genuinely responsive — exactly what a first-time Bangkok buyer needs.&rdquo;">&ldquo;Soho Properties ช่วยให้ผมหาคอนโดในสุขุมวิทได้ภายในสัปดาห์เดียว ทีมงานเป็นมืออาชีพและตอบคำถามทุกข้อได้อย่างละเอียด แนะนำมากครับ&rdquo;</p>
+        <div class="testi-card__author">
+          <img class="testi-card__avatar" src="https://images.unsplash.com/photo-1769839271827-e7e287319dd4?w=80&h=80&fit=crop&crop=face" alt="James H.">
+          <div>
+            <div class="testi-card__name">James H.</div>
+            <div class="testi-card__role" data-lang-th="ผู้ซื้อ · สุขุมวิท" data-lang-en="Buyer · Sukhumvit">ผู้ซื้อ · สุขุมวิท</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-card__quote" data-lang-th="&ldquo;ในฐานะนักลงทุนจากต่างประเทศ การมีทีมที่เข้าใจกฎหมายและตลาดกรุงเทพฯ อย่างลึกซึ้งนั้นสำคัญมาก Soho ทำให้ทุกอย่างง่ายขึ้นอย่างเหลือเชื่อ&rdquo;" data-lang-en="&ldquo;As a foreign investor, having a team that truly understands Bangkok law and market dynamics is invaluable. Soho made the entire process remarkably smooth.&rdquo;">&ldquo;ในฐานะนักลงทุนจากต่างประเทศ การมีทีมที่เข้าใจกฎหมายและตลาดกรุงเทพฯ อย่างลึกซึ้งนั้นสำคัญมาก&rdquo;</p>
+        <div class="testi-card__author">
+          <img class="testi-card__avatar" src="https://images.unsplash.com/photo-1780035206691-f2cd8834d125?w=80&h=80&fit=crop&crop=face" alt="Michael R.">
+          <div>
+            <div class="testi-card__name">Michael R.</div>
+            <div class="testi-card__role" data-lang-th="นักลงทุน · สีลม" data-lang-en="Investor · Silom">นักลงทุน · สีลม</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact" id="contact">
+  <div class="contact__inner">
+    <div class="contact__info reveal">
+      <p class="contact__label" data-lang-th="ติดต่อเรา" data-lang-en="Get in Touch">ติดต่อเรา</p>
+      <h2 class="contact__title"><span data-lang-th="พร้อมช่วยคุณ" data-lang-en="We're Here —">พร้อมช่วยคุณ</span><br><em data-lang-th="ทุกขั้นตอน" data-lang-en="Every Step of the Way">ทุกขั้นตอน</em></h2>
+      <div class="contact__details">
+        <div class="contact__item">
+          <i data-lucide="phone" width="16" height="16" class="contact__item-icon"></i>
+          <span>+66 815 516 695</span>
+        </div>
+        <div class="contact__item">
+          <i data-lucide="map-pin" width="16" height="16" class="contact__item-icon"></i>
+          <span data-lang-th="19/148 ชั้น 14 สุขุมวิทสวีท สุขุมวิทซอย 13 คลองเตย กรุงเทพฯ 10110" data-lang-en="19/148 14th Floor, Sukhumvit Suite, Sukhumvit Soi 13, Klongtoey, Bangkok 10110">19/148 ชั้น 14 สุขุมวิทสวีท สุขุมวิทซอย 13 คลองเตย กรุงเทพฯ 10110</span>
+        </div>
+        <div class="contact__item">
+          <i data-lucide="clock" width="16" height="16" class="contact__item-icon"></i>
+          <span data-lang-th="จันทร์–ศุกร์ 9:00–18:00 น." data-lang-en="Mon–Fri 9:00–18:00">จันทร์–ศุกร์ 9:00–18:00 น.</span>
+        </div>
+      </div>
+      <div class="contact__socials">
+        <a class="social-btn" href="#" aria-label="Facebook">
+          <i data-lucide="facebook" width="16" height="16"></i>
+        </a>
+        <a class="social-btn" href="#" aria-label="Twitter">
+          <i data-lucide="twitter" width="16" height="16"></i>
+        </a>
+        <a class="social-btn" href="#" aria-label="LINE">
+          <i data-lucide="message-circle" width="16" height="16"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact__form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label data-lang-th="ชื่อ" data-lang-en="First Name">ชื่อ</label>
+          <input type="text" data-lang-th-placeholder="ชื่อของคุณ" data-lang-en-placeholder="Your first name" placeholder="ชื่อของคุณ">
+        </div>
+        <div class="form-group">
+          <label data-lang-th="นามสกุล" data-lang-en="Last Name">นามสกุล</label>
+          <input type="text" data-lang-th-placeholder="นามสกุลของคุณ" data-lang-en-placeholder="Your last name" placeholder="นามสกุลของคุณ">
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:1rem">
+        <label data-lang-th="อีเมล" data-lang-en="Email">อีเมล</label>
+        <input type="email" data-lang-th-placeholder="อีเมลของคุณ" data-lang-en-placeholder="your@email.com" placeholder="อีเมลของคุณ">
+      </div>
+      <div class="form-group" style="margin-bottom:1rem">
+        <label data-lang-th="ความสนใจ" data-lang-en="I'm Interested In">ความสนใจ</label>
+        <select>
+          <option data-lang-th="กรุณาเลือก" data-lang-en="Please select">กรุณาเลือก</option>
+          <option data-lang-th="ซื้ออสังหาริมทรัพย์" data-lang-en="Buying a Property">ซื้ออสังหาริมทรัพย์</option>
+          <option data-lang-th="เช่าอสังหาริมทรัพย์" data-lang-en="Renting a Property">เช่าอสังหาริมทรัพย์</option>
+          <option data-lang-th="ขายอสังหาริมทรัพย์" data-lang-en="Selling a Property">ขายอสังหาริมทรัพย์</option>
+          <option data-lang-th="ลงทุนอสังหาริมทรัพย์" data-lang-en="Investment Properties">ลงทุนอสังหาริมทรัพย์</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-bottom:1.4rem">
+        <label data-lang-th="ข้อความ" data-lang-en="Message">ข้อความ</label>
+        <textarea data-lang-th-placeholder="บอกเราเพิ่มเติมเกี่ยวกับสิ่งที่คุณต้องการ..." data-lang-en-placeholder="Tell us more about what you're looking for..." placeholder="บอกเราเพิ่มเติมเกี่ยวกับสิ่งที่คุณต้องการ..."></textarea>
+      </div>
+      <button class="form-submit" type="button">
+        <i data-lucide="send" width="16" height="16"></i>
+        <span data-lang-th="ส่งข้อความ" data-lang-en="Send Message">ส่งข้อความ</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__logo">Soho <span>Properties</span></div>
+        <p class="footer__tagline" data-lang-th="เว็บไซต์อสังหาริมทรัพย์ชั้นนำในกรุงเทพฯ สำหรับชาวต่างชาติ นักลงทุน และผู้เช่าที่ต้องการสิ่งที่ดีที่สุด" data-lang-en="Bangkok's finest property listing website — serving expats, investors, and renters who demand the very best.">เว็บไซต์อสังหาริมทรัพย์ชั้นนำในกรุงเทพฯ สำหรับชาวต่างชาติ นักลงทุน และผู้เช่าที่ต้องการสิ่งที่ดีที่สุด</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <div class="footer__col-title" data-lang-th="อสังหาริมทรัพย์" data-lang-en="Properties">อสังหาริมทรัพย์</div>
+          <ul class="footer__col-links">
+            <li><a href="#" data-lang-th="คอนโดสำหรับขาย" data-lang-en="Condos for Sale">คอนโดสำหรับขาย</a></li>
+            <li><a href="#" data-lang-th="คอนโดสำหรับเช่า" data-lang-en="Condos for Rent">คอนโดสำหรับเช่า</a></li>
+            <li><a href="#" data-lang-th="บ้านและวิลล่า" data-lang-en="Houses & Villas">บ้านและวิลล่า</a></li>
+            <li><a href="#" data-lang-th="พาณิชยกรรม" data-lang-en="Commercial">พาณิชยกรรม</a></li>
+            <li><a href="#" data-lang-th="อสังหาฯ เพื่อสัตว์เลี้ยง" data-lang-en="Pet-Friendly">อสังหาฯ เพื่อสัตว์เลี้ยง</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-title" data-lang-th="บริษัท" data-lang-en="Company">บริษัท</div>
+          <ul class="footer__col-links">
+            <li><a href="#" data-lang-th="เกี่ยวกับเรา" data-lang-en="About Us">เกี่ยวกับเรา</a></li>
+            <li><a href="#" data-lang-th="ทีมผู้เชี่ยวชาญ" data-lang-en="Our Agents">ทีมผู้เชี่ยวชาญ</a></li>
+            <li><a href="#neighborhoods" data-lang-th="คู่มือย่านที่อยู่อาศัย" data-lang-en="Neighborhood Guides">คู่มือย่านที่อยู่อาศัย</a></li>
+            <li><a href="#contact" data-lang-th="ติดต่อเรา" data-lang-en="Contact">ติดต่อเรา</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span data-lang-th="© 2026 Soho Properties. สงวนลิขสิทธิ์" data-lang-en="© 2026 Soho Properties. All rights reserved.">© 2026 Soho Properties. สงวนลิขสิทธิ์</span>
+      <span data-lang-th="นโยบายความเป็นส่วนตัว · เงื่อนไขการใช้งาน" data-lang-en="Privacy Policy · Terms of Use">นโยบายความเป็นส่วนตัว · เงื่อนไขการใช้งาน</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Navbar scroll ──
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive: true});
+
+// ── Hamburger ──
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuClose = document.getElementById('menuClose');
+burger.addEventListener('click', () => mobileMenu.classList.add('open'));
+menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
+
+// ── IntersectionObserver reveals ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.12});
+
+document.querySelectorAll('.reveal, .reveal-stagger, .step, .prop-row').forEach(el => {
+  observer.observe(el);
+});
+
+// ── Accordion ──
+document.querySelectorAll('.acc-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.acc-item');
+    const body = item.querySelector('.acc-body');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.acc-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.acc-body').style.maxHeight = '0';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  });
+});
+
+// ── Placeholder lang switch ──
+function updatePlaceholders(lang) {
+  document.querySelectorAll('[data-lang-' + lang + '-placeholder]').forEach(el => {
+    el.placeholder = el.getAttribute('data-lang-' + lang + '-placeholder');
+  });
+}
+// Extend the lang switcher to also update placeholders
+const _origS = window._sohoLangHook;
+document.querySelector('.lang-sw').addEventListener('click', () => {
+  const lang = document.documentElement.lang;
+  setTimeout(() => updatePlaceholders(document.documentElement.lang), 10);
+});
+updatePlaceholders('th');
+</script>
+
+<!-- ── Language switcher (exact prescribed JS) ── -->
+<script>
+(function(){var K='site-lang',L=localStorage.getItem(K)||'th';function S(l){L=l;localStorage.setItem(K,l);document.documentElement.lang=l;document.querySelectorAll('[data-lang-th]').forEach(function(e){var t=e.getAttribute('data-lang-'+l);if(t!==null){e.textContent=t}});var lb=document.querySelector('.lang-sw__label');if(lb){lb.textContent=l.toUpperCase()}}var sw=document.querySelector('.lang-sw');if(sw){sw.addEventListener('click',function(){S(L==='th'?'en':'th')});sw.style.cursor='pointer'}if(L!=='th'){S(L)}})();
+</script>
+
+<script>
+lucide.createIcons();
+</script>
+</body>
+</html>

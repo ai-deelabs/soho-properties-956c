@@ -1,0 +1,5 @@
+DIRECTION 1: Asymmetric split-screen grid with full-bleed property photography bleeding into text columns — oversized condensed sans-serif headlines with tight tracking, body in elegant light-weight serif — deep charcoal (#1C1C1E) + warm sand (#D4C5A9) + muted terracotta (#B5735A) + off-white (#F5F0E8) — composed, editorial, quietly authoritative
+
+DIRECTION 2: Centered editorial layout with generous whitespace, properties presented as stacked full-width cinematic panoramas — tall transitional serif headlines (high contrast thick/thin strokes) paired with small-cap labels in geometric sans — cool slate (#4A5568) + pale bone (#EDE8DF) + dusty mauve (#9B7E8C) + near-black (#0F0F10) — refined, unhurried, magazine-grade sophistication
+
+DIRECTION 3: Dense information-forward masonry grid with overlapping property cards, bold typographic hierarchy — compressed grotesque headline font at display scale, monospaced data labels for prices/specs — warm graphite (#2D2926) + pale amber (#F2E0C0) + sage grey (#8B9E8E) + bright white (#FFFFFF) — energetic, metropolitan, data-confident without feeling cold
