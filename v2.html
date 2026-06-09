@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>โซโห พร็อพเพอร์ตี้ส์ — เว็บไซต์อสังหาริมทรัพย์ชั้นนำในกรุงเทพฯ</title>
 <meta name="description" content="โซโห พร็อพเพอร์ตี้ส์ — ค้นหา ซื้อ ขาย เช่าคอนโด บ้าน อาคารสำนักงาน และอสังหาริมทรัพย์ระดับพรีเมียมในกรุงเทพฯ">
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -15,11 +16,11 @@
 :root{
   --bone:#EDE8DF;
   --slate:#4A5568;
-  --mauve:#9B7E8C;
+  --mauve:#3A40B5;
   --near-black:#0F0F10;
   --white:#FAFAF8;
   --slate-light:#E2E8F0;
-  --mauve-light:#C4A8B4;
+  --mauve-light:#7E88DD;
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'DM Sans','IBM Plex Sans Thai','Sukhumvit Set',sans-serif;
   --thai:'IBM Plex Sans Thai','Sukhumvit Set',sans-serif;
@@ -81,6 +82,8 @@ p{line-height:1.8}
   letter-spacing:0.04em;
 }
 .nav__logo span{color:var(--mauve-light)}
+.brand-logo{height:42px;width:auto;display:block;background:#fff;padding:6px 9px;border-radius:8px}
+.footer__logo .brand-logo{height:50px}
 .nav__links{
   display:none;
   gap:2.2rem;
@@ -1166,7 +1169,7 @@ p{line-height:1.8}
 
 <!-- ══ NAVBAR ══ -->
 <nav class="nav" id="navbar">
-  <a class="nav__logo" href="#">Soho <span>Properties</span></a>
+  <a class="nav__logo" href="#"><img class="brand-logo" src="logo.png" alt="Soho Properties"></a>
   <ul class="nav__links">
     <li><a href="#properties" data-lang-th="อสังหาริมทรัพย์" data-lang-en="Properties">อสังหาริมทรัพย์</a></li>
     <li><a href="#neighborhoods" data-lang-th="ย่านที่อยู่อาศัย" data-lang-en="Neighborhoods">ย่านที่อยู่อาศัย</a></li>
@@ -1673,7 +1676,7 @@ p{line-height:1.8}
   <div class="footer__inner">
     <div class="footer__top">
       <div class="footer__brand">
-        <div class="footer__logo">Soho <span>Properties</span></div>
+        <div class="footer__logo"><img class="brand-logo" src="logo.png" alt="Soho Properties"></div>
         <p class="footer__tagline" data-lang-th="เว็บไซต์อสังหาริมทรัพย์ชั้นนำในกรุงเทพฯ สำหรับชาวต่างชาติ นักลงทุน และผู้เช่าที่ต้องการสิ่งที่ดีที่สุด" data-lang-en="Bangkok's finest property listing website — serving expats, investors, and renters who demand the very best.">เว็บไซต์อสังหาริมทรัพย์ชั้นนำในกรุงเทพฯ สำหรับชาวต่างชาติ นักลงทุน และผู้เช่าที่ต้องการสิ่งที่ดีที่สุด</p>
       </div>
       <div class="footer__cols">

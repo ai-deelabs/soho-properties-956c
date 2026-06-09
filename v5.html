@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Soho Properties — Tropical Modernist</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#FBF4E9;
+    --cream-2:#F3E7D3;
+    --ink:#36302A;
+    --terracotta:#3A40B5;
+    --terracotta-d:#2A2F8C;
+    --jade:#3E8E7E;
+    --jade-d:#2F6E62;
+    --coral:#F2A65A;
+    --sun:#F6C453;
+    --white:#fffdf9;
+    --display:"Poppins",sans-serif;
+    --body:"Nunito",sans-serif;
+    --r:26px;
+    --shadow:0 24px 50px -28px rgba(54,48,42,.45);
+    --shadow-sm:0 14px 28px -18px rgba(54,48,42,.4);
+    --spring:cubic-bezier(.34,1.56,.64,1);
+    --maxw:1240px;
+  }
+  html[lang="th"]{ --display:"Noto Sans Thai", sans-serif; --body:"Noto Sans Thai", sans-serif; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:var(--body);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--terracotta);color:#fff}
+
+  .reveal{opacity:0;transform:translateY(40px) scale(.98);transition:opacity .8s var(--spring),transform .8s var(--spring)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal[data-d="1"]{transition-delay:.1s}.reveal[data-d="2"]{transition-delay:.2s}.reveal[data-d="3"]{transition-delay:.3s}
+
+  /* blobs */
+  .blob{position:absolute;border-radius:50%;filter:blur(2px);z-index:0;pointer-events:none;opacity:.55}
+  @keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(26px,-30px) scale(1.08)}}
+  @keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-30px,22px) scale(1.06)}}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;transition:.4s}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:14px auto 0;max-width:var(--maxw);
+    padding:12px 14px 12px 24px;background:rgba(255,253,249,.78);backdrop-filter:blur(16px);border-radius:999px;box-shadow:var(--shadow-sm);
+    border:1px solid rgba(54,48,42,.06)}
+  header.solid .bar{box-shadow:0 18px 36px -22px rgba(54,48,42,.5)}
+  .brand{font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+  .brand .dot{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--sun),var(--terracotta));flex:none}
+  .brand-logo{height:46px;width:auto;display:block}
+  .f-brand .brand-logo{height:52px;background:#fff;padding:7px 10px;border-radius:12px}
+  nav.main ul{display:flex;gap:6px;list-style:none}
+  nav.main a{font-family:var(--display);font-weight:500;font-size:.86rem;padding:9px 15px;border-radius:999px;transition:.3s var(--spring)}
+  nav.main a:hover{background:var(--cream-2);transform:translateY(-2px)}
+  .tools{display:flex;align-items:center;gap:12px}
+  .phone{font-family:var(--display);font-weight:600;font-size:.82rem;color:var(--jade-d);white-space:nowrap}
+  .lang{display:inline-flex;background:var(--cream-2);border-radius:999px;padding:3px}
+  .lang button{border:0;background:none;font-family:var(--display);font-weight:600;font-size:.74rem;padding:6px 12px;border-radius:999px;cursor:pointer;color:var(--ink);transition:.3s}
+  .lang button.active{background:var(--terracotta);color:#fff}
+  .cta-pill{background:var(--ink);color:var(--cream);font-family:var(--display);font-weight:600;font-size:.82rem;padding:11px 20px;border-radius:999px;transition:.3s var(--spring)}
+  .cta-pill:hover{transform:translateY(-2px);background:var(--jade)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{width:24px;height:2.5px;border-radius:3px;background:var(--ink);transition:.3s}
+  .drawer{display:none}
+
+  /* hero */
+  .hero{position:relative;padding:clamp(40px,7vh,80px) 0 clamp(50px,8vh,90px)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,64px);align-items:center;position:relative;z-index:2}
+  .pill-tag{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--cream-2);border-radius:999px;padding:8px 16px;font-family:var(--display);font-weight:600;font-size:.76rem;color:var(--jade-d);box-shadow:var(--shadow-sm)}
+  .pill-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--jade)}
+  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,6.5vw,4.8rem);line-height:1.02;letter-spacing:-.03em;margin:22px 0 0}
+  .hero h1 .hl{color:var(--terracotta);position:relative;white-space:nowrap}
+  .hero h1 .hl svg{position:absolute;left:0;bottom:-8px;width:100%}
+  .hero p.lead{font-size:clamp(1.02rem,1.5vw,1.2rem);max-width:46ch;margin-top:22px;color:rgba(54,48,42,.75)}
+  .hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+  .btn-pri{background:var(--terracotta);color:#fff;font-family:var(--display);font-weight:700;font-size:.92rem;padding:15px 30px;border-radius:999px;transition:.3s var(--spring);box-shadow:0 16px 30px -14px var(--terracotta)}
+  .btn-pri:hover{transform:translateY(-3px);background:var(--terracotta-d)}
+  .btn-sec{font-family:var(--display);font-weight:700;font-size:.92rem;padding:15px 26px;border-radius:999px;border:2px solid var(--ink);transition:.3s var(--spring)}
+  .btn-sec:hover{transform:translateY(-3px);background:var(--ink);color:var(--cream)}
+  .hero-art{position:relative}
+  .hero-art .photo{border-radius:40px 40px 40px 120px;overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow);position:relative;z-index:2}
+  .hero-art .photo img{width:100%;height:100%;object-fit:cover}
+  .hero-badge{position:absolute;z-index:3;background:var(--white);border-radius:22px;padding:16px 20px;box-shadow:var(--shadow);font-family:var(--display);animation:float1 6s ease-in-out infinite}
+  .hero-badge.b1{top:24px;left:-10px}
+  .hero-badge.b2{bottom:36px;right:-12px;animation:float2 7s ease-in-out infinite}
+  .hero-badge .big{font-weight:800;font-size:1.5rem;color:var(--terracotta);line-height:1}
+  .hero-badge .small{font-size:.72rem;color:rgba(54,48,42,.6);font-weight:600}
+
+  /* search */
+  .search{position:relative;z-index:5;margin-top:-24px}
+  .search-card{background:var(--white);border-radius:var(--r);padding:clamp(16px,2.4vw,24px);box-shadow:var(--shadow);border:1px solid var(--cream-2)}
+  .seg{display:inline-flex;background:var(--cream-2);border-radius:999px;padding:4px;margin-bottom:16px}
+  .seg button{border:0;background:none;font-family:var(--display);font-weight:700;font-size:.82rem;padding:9px 24px;border-radius:999px;cursor:pointer;transition:.3s}
+  .seg button.active{background:var(--jade);color:#fff}
+  .fields{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr auto;gap:12px;align-items:end}
+  .field label{display:block;font-family:var(--display);font-weight:600;font-size:.72rem;color:var(--jade-d);margin-bottom:6px}
+  .field input,.field select{width:100%;background:var(--cream);border:1px solid var(--cream-2);border-radius:14px;padding:12px 14px;font-family:var(--body);font-size:.92rem;color:var(--ink);transition:.25s}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--jade);background:#fff}
+  .field input::placeholder{color:rgba(54,48,42,.4)}
+  .pair{display:flex;gap:8px}
+  .btn-search{background:var(--terracotta);color:#fff;border:0;border-radius:14px;padding:13px 26px;font-family:var(--display);font-weight:700;font-size:.92rem;cursor:pointer;transition:.3s var(--spring);white-space:nowrap}
+  .btn-search:hover{transform:translateY(-2px);background:var(--terracotta-d)}
+
+  /* sections */
+  section{padding:clamp(56px,9vh,110px) 0}
+  .shead{text-align:center;max-width:620px;margin:0 auto clamp(36px,6vh,60px)}
+  .shead .kick{font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta)}
+  .shead h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.05;letter-spacing:-.02em;margin-top:10px}
+
+  /* listings */
+  .listings{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px)}
+  .card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--cream-2);transition:transform .4s var(--spring),box-shadow .4s;cursor:pointer}
+  .card:hover{transform:translateY(-10px);box-shadow:var(--shadow)}
+  .card-media{position:relative;aspect-ratio:4/3;overflow:hidden}
+  .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--spring)}
+  .card:hover .card-media img{transform:scale(1.08)}
+  .tag-price{position:absolute;bottom:12px;left:12px;background:var(--white);border-radius:999px;padding:7px 16px;font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--terracotta);box-shadow:var(--shadow-sm)}
+  .card-body{padding:20px 20px 22px}
+  .card-body h3{font-family:var(--display);font-weight:700;font-size:1.08rem;line-height:1.3;min-height:2.6em}
+  .card-meta{display:flex;gap:14px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--cream-2)}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:600;font-size:.8rem;color:rgba(54,48,42,.7)}
+  .chip b{color:var(--jade-d)}
+  .center-more{text-align:center;margin-top:46px}
+
+  /* sell band */
+  .sell{position:relative}
+  .sell-inner{background:linear-gradient(135deg,var(--jade),var(--jade-d));border-radius:40px;color:#fff;padding:clamp(36px,5vw,70px);display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;overflow:hidden;position:relative}
+  .sell-inner .blobx{position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.08);top:-80px;right:-60px}
+  .sell-inner h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);line-height:1.05;letter-spacing:-.02em;position:relative}
+  .sell-inner p{margin:18px 0 28px;max-width:42ch;color:rgba(255,255,255,.88);position:relative}
+  .btn-light{display:inline-flex;background:var(--white);color:var(--jade-d);font-family:var(--display);font-weight:700;padding:15px 30px;border-radius:999px;transition:.3s var(--spring);position:relative}
+  .btn-light:hover{transform:translateY(-3px);background:var(--sun)}
+  .sell-pic{position:relative;z-index:2}
+  .sell-pic img{border-radius:28px;aspect-ratio:1;object-fit:cover;width:100%;box-shadow:0 30px 50px -24px rgba(0,0,0,.5)}
+
+  /* neighborhoods bento */
+  .bento{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:18px;height:560px}
+  .hood{position:relative;border-radius:28px;overflow:hidden;color:#fff;display:flex;align-items:flex-end;padding:26px;transition:transform .4s var(--spring)}
+  .hood:hover{transform:scale(.99)}
+  .hood:nth-child(1){grid-row:1/3}
+  .hood img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--spring)}
+  .hood::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(54,48,42,0) 30%,rgba(54,48,42,.82) 100%)}
+  .hood:hover img{transform:scale(1.07)}
+  .hood-c{position:relative;z-index:2}
+  .hood-c .tg{display:inline-block;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);font-family:var(--display);font-weight:600;font-size:.7rem;padding:5px 12px;border-radius:999px;margin-bottom:10px}
+  .hood-c h3{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,2.6vw,2rem)}
+  .hood-c p{font-size:.92rem;margin-top:8px;color:rgba(255,255,255,.9);max-width:34ch}
+
+  /* newsletter */
+  .news .news-card{background:var(--cream-2);border-radius:40px;padding:clamp(40px,6vw,72px);text-align:center;position:relative;overflow:hidden}
+  .news h2{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5vw,3.6rem);letter-spacing:-.02em}
+  .news p{max-width:50ch;margin:16px auto 30px;color:rgba(54,48,42,.75)}
+  .news-form{display:flex;gap:10px;max-width:520px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .news-form input{flex:1;min-width:220px;background:#fff;border:1px solid rgba(54,48,42,.1);border-radius:999px;padding:15px 22px;font-family:var(--body);font-size:1rem}
+  .news-form input:focus{outline:none;border-color:var(--terracotta)}
+  .news-form button{background:var(--terracotta);color:#fff;border:0;border-radius:999px;padding:15px 30px;font-family:var(--display);font-weight:700;cursor:pointer;transition:.3s var(--spring)}
+  .news-form button:hover{transform:translateY(-2px);background:var(--terracotta-d)}
+  .news .priv{font-size:.82rem;color:rgba(54,48,42,.55);margin-top:16px}
+
+  /* footer */
+  footer{background:var(--ink);color:var(--cream);padding:clamp(56px,8vh,90px) 0 36px;border-radius:48px 48px 0 0;margin-top:30px}
+  .f-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:42px;border-bottom:1px solid rgba(251,244,233,.12)}
+  .f-brand{font-family:var(--display);font-weight:800;font-size:1.5rem;display:flex;align-items:center;gap:10px}
+  .f-brand .dot{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--sun),var(--terracotta))}
+  .f-top .sub{margin-top:16px;color:rgba(251,244,233,.65);max-width:32ch}
+  .f-top .sub b{display:block;color:var(--cream);font-family:var(--display);margin-top:12px;font-weight:600}
+  .socials{display:flex;gap:10px;margin-top:18px}
+  .socials a{font-family:var(--display);font-weight:600;font-size:.8rem;background:rgba(251,244,233,.1);padding:9px 16px;border-radius:999px;transition:.3s var(--spring)}
+  .socials a:hover{background:var(--terracotta);transform:translateY(-2px)}
+  .f-col h4{font-family:var(--display);font-weight:700;font-size:.92rem;color:var(--sun);margin-bottom:16px}
+  .f-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .f-col a{color:rgba(251,244,233,.75);transition:.3s}
+  .f-col a:hover{color:var(--sun);padding-left:5px}
+  .f-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:26px;font-size:.84rem;color:rgba(251,244,233,.55)}
+  .credits{margin-top:12px;font-size:.74rem;line-height:1.9;color:rgba(251,244,233,.4)}
+  .credits a{color:var(--coral);text-decoration:underline;text-underline-offset:2px}
+
+  @media(max-width:980px){
+    nav.main ul{display:none}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-art{max-width:440px;margin:0 auto}
+    .fields{grid-template-columns:1fr 1fr}
+    .fields .btn-search{grid-column:1/-1}
+    .listings{grid-template-columns:repeat(2,1fr)}
+    .sell-inner{grid-template-columns:1fr}
+    .bento{grid-template-columns:1fr;grid-template-rows:none;height:auto}
+    .hood{aspect-ratio:16/10}
+    .hood:nth-child(1){grid-row:auto}
+    .f-top{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:640px){
+    .burger{display:flex}
+    .phone,.cta-pill{display:none}
+    .fields{grid-template-columns:1fr}
+    .listings{grid-template-columns:1fr}
+    .f-top{grid-template-columns:1fr}
+    .drawer{display:block;position:fixed;inset:0;z-index:60;background:var(--cream);transform:translateY(-100%);transition:transform .5s var(--spring);padding:30px}
+    .drawer.open{transform:none}
+    .drawer .x{position:absolute;top:22px;right:24px;background:none;border:0;font-size:2rem;cursor:pointer;color:var(--ink)}
+    .drawer ul{list-style:none;margin-top:70px;display:flex;flex-direction:column;gap:4px}
+    .drawer a{font-family:var(--display);font-weight:700;font-size:1.7rem;padding:12px 0;border-bottom:1px solid var(--cream-2)}
+    .drawer .d-phone{margin-top:24px;font-family:var(--display);font-weight:700;color:var(--jade-d)}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="bar">
+    <a class="brand" href="#"><img class="brand-logo" src="logo.png" alt="Soho Properties" /></a>
+    <nav class="main">
+      <ul>
+        <li><a href="#" data-i18n="nav_buy">ซื้อ</a></li>
+        <li><a href="#" data-i18n="nav_rent">เช่า</a></li>
+        <li><a href="#" data-i18n="nav_pet">สัตว์เลี้ยงอยู่ได้</a></li>
+        <li><a href="#" data-i18n="nav_about">เกี่ยวกับเรา</a></li>
+        <li><a href="#" data-i18n="nav_contact">ติดต่อเรา</a></li>
+      </ul>
+    </nav>
+    <div class="tools">
+      <span class="phone">+66 (0) 815 516 695</span>
+      <div class="lang" id="lang"><button data-lang="th" class="active">TH</button><button data-lang="en">EN</button></div>
+      <a class="cta-pill" href="#" data-i18n="nav_list">ลงประกาศทรัพย์</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <button class="x" id="drawerX" aria-label="Close">&times;</button>
+  <ul>
+    <li><a href="#" data-i18n="nav_buy">ซื้อ</a></li>
+    <li><a href="#" data-i18n="nav_rent">เช่า</a></li>
+    <li><a href="#" data-i18n="nav_pet">สัตว์เลี้ยงอยู่ได้</a></li>
+    <li><a href="#" data-i18n="nav_list">ลงประกาศทรัพย์</a></li>
+    <li><a href="#" data-i18n="nav_about">เกี่ยวกับเรา</a></li>
+    <li><a href="#" data-i18n="nav_contact">ติดต่อเรา</a></li>
+  </ul>
+  <div class="d-phone">+66 (0) 815 516 695</div>
+</div>
+
+<!-- hero -->
+<section class="hero">
+  <div class="blob" style="width:380px;height:380px;background:var(--sun);top:-60px;left:-120px;animation:float1 9s ease-in-out infinite"></div>
+  <div class="blob" style="width:300px;height:300px;background:var(--jade);bottom:-80px;right:-80px;animation:float2 11s ease-in-out infinite"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill-tag reveal" data-i18n="hero_eyebrow">เว็บไซต์อสังหาฯ ชั้นนำของกรุงเทพฯ</span>
+      <h1 class="reveal" data-d="1" data-i18n-html="hero_title">บ้านในฝัน <span class="hl">ในกรุงเทพฯ</span> รอคุณอยู่</h1>
+      <p class="lead reveal" data-d="2" data-i18n="hero_lead">เราคือเว็บไซต์ประกาศอสังหาริมทรัพย์ชั้นนำของกรุงเทพฯ ให้เราดูแลคุณด้วยความเชี่ยวชาญและความรู้เชิงลึกเกี่ยวกับตลาดอสังหาริมทรัพย์ในเมืองหลวง</p>
+      <div class="hero-actions reveal" data-d="3">
+        <a class="btn-pri" href="#" data-i18n="hero_btn1">เริ่มค้นหาบ้าน</a>
+        <a class="btn-sec" href="#" data-i18n="hero_btn2">สำรวจย่านน่าอยู่</a>
+      </div>
+    </div>
+    <div class="hero-art reveal" data-d="2">
+      <div class="hero-badge b1"><div class="big">1,200+</div><div class="small" data-i18n="stat1">ทรัพย์พร้อมเข้าอยู่</div></div>
+      <div class="photo"><img src="https://images.unsplash.com/photo-1593105587944-0d95571177f0?auto=format&fit=crop&w=1000&q=80" alt="Sunlit Bangkok home" /></div>
+      <div class="hero-badge b2"><div class="big">15 ☀</div><div class="small" data-i18n="stat2">ย่านยอดนิยม</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- search -->
+<div class="wrap search">
+  <div class="search-card reveal">
+    <div class="seg" id="seg1"><button class="active" data-i18n="seg_buy">ซื้อ</button><button data-i18n="seg_rent">เช่า</button></div>
+    <div class="fields">
+      <div class="field"><label data-i18n="f_loc">ทำเลหรือชื่อโครงการ</label><input type="text" data-i18n-ph="f_loc_ph" placeholder="ค้นหาทำเล..." /></div>
+      <div class="field"><label data-i18n="f_type">ประเภททรัพย์</label>
+        <select><option data-i18n="t_any">ทั้งหมด</option><option data-i18n="t_condo">คอนโด</option><option data-i18n="t_house">บ้านเดี่ยว</option><option data-i18n="t_town">ทาวน์เฮาส์</option><option data-i18n="t_villa">วิลล่า</option></select>
+      </div>
+      <div class="field"><label data-i18n="f_price">ช่วงราคา (฿)</label><div class="pair"><input type="text" data-i18n-ph="f_min" placeholder="ต่ำสุด" /><input type="text" data-i18n-ph="f_max" placeholder="สูงสุด" /></div></div>
+      <div class="field"><label data-i18n="f_beds">ห้องนอน</label><div class="pair"><input type="text" data-i18n-ph="f_min" placeholder="ต่ำสุด" /><input type="text" data-i18n-ph="f_max" placeholder="สูงสุด" /></div></div>
+      <button class="btn-search" data-i18n="search">ค้นหา</button>
+    </div>
+  </div>
+</div>
+
+<!-- listings -->
+<section>
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="kick" data-i18n="list_kick">ทรัพย์แนะนำ</div>
+      <h2 data-i18n="list_title">ทรัพย์ใหม่ล่าสุดของเรา</h2>
+    </div>
+    <div class="listings" id="listings"></div>
+    <div class="center-more"><a class="btn-sec reveal" href="#" data-i18n="list_more">ดูทรัพย์เพิ่มเติม</a></div>
+  </div>
+</section>
+
+<!-- sell -->
+<section class="sell">
+  <div class="wrap">
+    <div class="sell-inner reveal">
+      <div class="blobx"></div>
+      <div>
+        <h2 data-i18n="sell_title">ขายบ้านของคุณกับ Soho Properties</h2>
+        <p data-i18n="sell_copy">ตัวแทนของ Soho Properties ช่วยคุณตั้งราคาอย่างแม่นยำและทำการตลาดบ้านของคุณ เพื่อค้นหาผู้ซื้อที่ใช่ที่สุด</p>
+        <a class="btn-light" href="#" data-i18n="sell_btn">ลงประกาศทรัพย์ของคุณ</a>
+      </div>
+      <div class="sell-pic"><img src="https://images.unsplash.com/photo-1724582586529-62622e50c0b3?auto=format&fit=crop&w=800&q=80" alt="Bright interior" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- neighborhoods -->
+<section>
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="kick" data-i18n="hood_kick">ย่านน่าอยู่</div>
+      <h2 data-i18n="hood_title">สำรวจย่านน่าอยู่ของเรา</h2>
+    </div>
+    <div class="bento">
+      <a class="hood reveal" href="#">
+        <img src="https://images.unsplash.com/photo-1693320012255-ea011081fd73?auto=format&fit=crop&w=900&q=80" alt="Phrom Phong" />
+        <div class="hood-c"><span class="tg" data-i18n="hood1_tag">ย่านครอบครัว</span><h3 data-i18n="hood1_name">พร้อมพงษ์</h3><p data-i18n="hood1_desc">ย่านครบครันเป็นมิตรกับครอบครัว ที่ซึ่งน้องแมวและน้องหมาอยู่ได้</p></div>
+      </a>
+      <a class="hood reveal" data-d="1" href="#">
+        <img src="https://images.unsplash.com/photo-1632385397216-37254f8046f5?auto=format&fit=crop&w=800&q=80" alt="Asoke" />
+        <div class="hood-c"><span class="tg" data-i18n="hood2_tag">ย่านธุรกิจ</span><h3 data-i18n="hood2_name">อโศก</h3><p data-i18n="hood2_desc">ย่านธุรกิจและจุดเชื่อมต่อสำคัญ</p></div>
+      </a>
+      <a class="hood reveal" data-d="2" href="#">
+        <img src="https://images.unsplash.com/photo-1752543523195-aa4916950b40?auto=format&fit=crop&w=800&q=80" alt="Phra Khanong" />
+        <div class="hood-c"><span class="tg" data-i18n="hood3_tag">ย่านท้องถิ่น</span><h3 data-i18n="hood3_name">พระโขนง</h3><p data-i18n="hood3_desc">ย่านสุขุมวิทเล็ก ๆ มีเสน่ห์</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- newsletter -->
+<section class="news">
+  <div class="wrap">
+    <div class="news-card reveal">
+      <div class="blob" style="width:200px;height:200px;background:var(--coral);top:-40px;left:6%;animation:float1 8s ease-in-out infinite"></div>
+      <div class="blob" style="width:160px;height:160px;background:var(--jade);bottom:-30px;right:8%;animation:float2 9s ease-in-out infinite"></div>
+      <div style="position:relative;z-index:2">
+        <div class="shead" style="margin-bottom:0">
+          <div class="kick" data-i18n="news_eyebrow">จดหมายข่าว</div>
+          <h2 data-i18n="news_title">อยู่อย่างชาญฉลาด</h2>
+        </div>
+        <p data-i18n="news_copy">ติดตามข่าวสารอสังหาฯ ล่าสุด โปรโมชั่น และเคล็ดลับจากผู้เชี่ยวชาญเกี่ยวกับการใช้ชีวิตในกรุงเทพฯ เพียงสมัครรับจดหมายข่าวของเรา</p>
+        <form class="news-form" onsubmit="return false">
+          <input type="email" data-i18n-ph="news_ph" placeholder="อีเมลของคุณ" />
+          <button type="submit" data-i18n="news_btn">สมัครรับข่าว</button>
+        </form>
+        <div class="priv" data-i18n="news_priv">เราใส่ใจความเป็นส่วนตัวของคุณ และจะไม่เปิดเผยข้อมูลของคุณ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <div class="f-brand"><img class="brand-logo" src="logo.png" alt="Soho Properties" /></div>
+        <div class="sub"><span data-i18n="brandsub">เว็บไซต์อสังหาฯ ชั้นนำของกรุงเทพฯ</span><b data-i18n="addr">19/148 ชั้น 14 อาคารสุขุมวิท สวีท ถนนสุขุมวิท ซอย 13 คลองเตย กรุงเทพฯ 10110</b><span data-i18n="hours" style="display:block;margin-top:8px">จันทร์ – ศุกร์ · 9:00 – 18:00 น.</span></div>
+        <div class="socials"><a href="#">Facebook</a><a href="#">Twitter</a><a href="#">Line</a></div>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="f_explore">สำรวจ</h4>
+        <ul><li><a href="#" data-i18n="f_contact">ติดต่อเรา</a></li><li><a href="#" data-i18n="f_about">เกี่ยวกับเรา</a></li><li><a href="#" data-i18n="f_list">ลงประกาศทรัพย์</a></li><li><a href="#" data-i18n="f_help">ให้เราช่วยคุณ</a></li></ul>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="f_resources">แหล่งข้อมูล</h4>
+        <ul><li><a href="#" data-i18n="f_rules">กฎและข้อกฎหมาย</a></li><li><a href="#" data-i18n="f_expats">สำหรับชาวต่างชาติ</a></li><li><a href="#" data-i18n="f_pet">สัตว์เลี้ยงอยู่ได้</a></li><li><a href="#" data-i18n="f_insp">แรงบันดาลใจ</a></li></ul>
+      </div>
+    </div>
+    <div class="f-bottom"><span data-i18n="copyright">ลิขสิทธิ์ © Soho Properties, Inc. สงวนลิขสิทธิ์</span><span data-i18n="madein">กรุงเทพมหานคร ประเทศไทย</span></div>
+    <div class="credits">
+      <span data-i18n="credits_label">ภาพถ่ายจาก Unsplash:</span>
+      <a href="https://unsplash.com/@markcjn?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Mark Chan</a>,
+      <a href="https://unsplash.com/@vettexan?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Michael Brown</a>,
+      <a href="https://unsplash.com/@ly0ns?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Li Yang</a>,
+      <a href="https://unsplash.com/@cesarimagestate?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Cesar Cid</a>,
+      <a href="https://unsplash.com/@prydumanodesign?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Prydumano Design</a>,
+      <a href="https://unsplash.com/@hiepng?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Hiep Nguyen</a>,
+      <a href="https://unsplash.com/@masatogoodbye?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Masato Tsuchiya</a>,
+      <a href="https://unsplash.com/@casperwestera?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Casper Westera</a>,
+      <a href="https://unsplash.com/@hatalife?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Hata Life</a>,
+      <a href="https://unsplash.com/@vishalcross36?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Vishal Chokkala</a>
+      — <a href="https://unsplash.com/?utm_source=soho_properties&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+  th:{
+    brandsub:"เว็บไซต์อสังหาฯ ชั้นนำของกรุงเทพฯ",
+    nav_buy:"ซื้อ", nav_rent:"เช่า", nav_pet:"สัตว์เลี้ยงอยู่ได้", nav_list:"ลงประกาศทรัพย์", nav_about:"เกี่ยวกับเรา", nav_contact:"ติดต่อเรา",
+    hero_eyebrow:"เว็บไซต์อสังหาฯ ชั้นนำของกรุงเทพฯ",
+    hero_title:"บ้านในฝัน <span class='hl'>ในกรุงเทพฯ</span> รอคุณอยู่",
+    hero_lead:"เราคือเว็บไซต์ประกาศอสังหาริมทรัพย์ชั้นนำของกรุงเทพฯ ให้เราดูแลคุณด้วยความเชี่ยวชาญและความรู้เชิงลึกเกี่ยวกับตลาดอสังหาริมทรัพย์ในเมืองหลวง",
+    hero_btn1:"เริ่มค้นหาบ้าน", hero_btn2:"สำรวจย่านน่าอยู่",
+    stat1:"ทรัพย์พร้อมเข้าอยู่", stat2:"ย่านยอดนิยม",
+    seg_buy:"ซื้อ", seg_rent:"เช่า",
+    f_loc:"ทำเลหรือชื่อโครงการ", f_loc_ph:"ค้นหาทำเล...", f_type:"ประเภททรัพย์",
+    t_any:"ทั้งหมด", t_condo:"คอนโด", t_house:"บ้านเดี่ยว", t_town:"ทาวน์เฮาส์", t_villa:"วิลล่า",
+    f_price:"ช่วงราคา (฿)", f_beds:"ห้องนอน", f_min:"ต่ำสุด", f_max:"สูงสุด", search:"ค้นหา",
+    list_kick:"ทรัพย์แนะนำ", list_title:"ทรัพย์ใหม่ล่าสุดของเรา", list_more:"ดูทรัพย์เพิ่มเติม",
+    sell_title:"ขายบ้านของคุณกับ Soho Properties",
+    sell_copy:"ตัวแทนของ Soho Properties ช่วยคุณตั้งราคาอย่างแม่นยำและทำการตลาดบ้านของคุณ เพื่อค้นหาผู้ซื้อที่ใช่ที่สุด",
+    sell_btn:"ลงประกาศทรัพย์ของคุณ",
+    hood_kick:"ย่านน่าอยู่", hood_title:"สำรวจย่านน่าอยู่ของเรา",
+    hood1_tag:"ย่านครอบครัว", hood1_name:"พร้อมพงษ์", hood1_desc:"ย่านครบครันเป็นมิตรกับครอบครัว ที่ซึ่งน้องแมวและน้องหมาอยู่ได้",
+    hood2_tag:"ย่านธุรกิจ", hood2_name:"อโศก", hood2_desc:"ย่านธุรกิจและจุดเชื่อมต่อสำคัญ ที่ซึ่ง BTS มาบรรจบกับ MRT",
+    hood3_tag:"ย่านท้องถิ่น", hood3_name:"พระโขนง", hood3_desc:"ย่านสุขุมวิทเล็ก ๆ มีเสน่ห์ ให้คุณสัมผัสชีวิตท้องถิ่น",
+    news_eyebrow:"จดหมายข่าว", news_title:"อยู่อย่างชาญฉลาด",
+    news_copy:"ติดตามข่าวสารอสังหาฯ ล่าสุด โปรโมชั่น และเคล็ดลับจากผู้เชี่ยวชาญเกี่ยวกับการใช้ชีวิตในกรุงเทพฯ เพียงสมัครรับจดหมายข่าวของเรา",
+    news_ph:"อีเมลของคุณ", news_btn:"สมัครรับข่าว", news_priv:"เราใส่ใจความเป็นส่วนตัวของคุณ และจะไม่เปิดเผยข้อมูลของคุณ",
+    addr:"19/148 ชั้น 14 อาคารสุขุมวิท สวีท ถนนสุขุมวิท ซอย 13 คลองเตย กรุงเทพฯ 10110",
+    hours:"จันทร์ – ศุกร์ · 9:00 – 18:00 น.",
+    f_explore:"สำรวจ", f_contact:"ติดต่อเรา", f_about:"เกี่ยวกับเรา", f_list:"ลงประกาศทรัพย์", f_help:"ให้เราช่วยคุณ",
+    f_resources:"แหล่งข้อมูล", f_rules:"กฎและข้อกฎหมาย", f_expats:"สำหรับชาวต่างชาติ", f_pet:"สัตว์เลี้ยงอยู่ได้", f_insp:"แรงบันดาลใจ",
+    copyright:"ลิขสิทธิ์ © Soho Properties, Inc. สงวนลิขสิทธิ์", madein:"กรุงเทพมหานคร ประเทศไทย",
+    credits_label:"ภาพถ่ายจาก Unsplash:",
+    bed:"นอน", bath:"น้ำ", sqm:"ตร.ม."
+  },
+  en:{
+    brandsub:"Bangkok's finest property listing website",
+    nav_buy:"To Buy", nav_rent:"To Rent", nav_pet:"Pet Friendly", nav_list:"List My Property", nav_about:"About Us", nav_contact:"Contact Us",
+    hero_eyebrow:"Bangkok's finest property listing website",
+    hero_title:"Your dream home <span class='hl'>in Bangkok</span> awaits",
+    hero_lead:"We are Bangkok's finest property listing website. Let us provide you our expertise and deep knowledge of the Bangkok real estate market.",
+    hero_btn1:"Start your search", hero_btn2:"Explore neighborhoods",
+    stat1:"homes ready to move in", stat2:"popular neighborhoods",
+    seg_buy:"Buy", seg_rent:"Rent",
+    f_loc:"Location or project name", f_loc_ph:"Search a location...", f_type:"Property type",
+    t_any:"Any type", t_condo:"Condo", t_house:"House", t_town:"Townhouse", t_villa:"Villa",
+    f_price:"Price range (฿)", f_beds:"Bedrooms", f_min:"Min", f_max:"Max", search:"Search",
+    list_kick:"Featured homes", list_title:"Our latest housing", list_more:"View More Housings",
+    sell_title:"Sell your home with Soho Properties",
+    sell_copy:"Soho Properties agents help you accurately price and market your home to find the right buyers.",
+    sell_btn:"List Your Property",
+    hood_kick:"Neighborhoods", hood_title:"Explore Our Neighborhoods",
+    hood1_tag:"Family friendly", hood1_name:"Phrom Phong", hood1_desc:"Family friendly got-it-all neighborhood, where cats and dogs are allowed.",
+    hood2_tag:"Business district", hood2_name:"Asoke", hood2_desc:"A business district and a major junction where BTS skytrain meets MRT underground.",
+    hood3_tag:"Local life", hood3_name:"Phra Khanong", hood3_desc:"A quaint Sukhumvit neighbourhood for a real local experience.",
+    news_eyebrow:"Newsletter", news_title:"Be smart",
+    news_copy:"Stay up-to-date with the latest property news, promos, and expert tips about places to live in Bangkok, by subscribing to our newsletter.",
+    news_ph:"Your email address", news_btn:"Subscribe", news_priv:"We value privacy and never share your details.",
+    addr:"19/148, 14th Floor, Sukhumvit Suite, Sukhumvit Road Soi 13, Khlong Toey, Bangkok 10110",
+    hours:"Monday – Friday · 9:00am – 6:00pm",
+    f_explore:"Explore", f_contact:"Contact Us", f_about:"About Us", f_list:"List Your Property", f_help:"Let us help you",
+    f_resources:"Resources", f_rules:"Rules and Laws", f_expats:"For Expats", f_pet:"Pet Friendly", f_insp:"Inspiration",
+    copyright:"Copyright © Soho Properties, Inc. All rights reserved.", madein:"Bangkok, Thailand",
+    credits_label:"Photography via Unsplash:",
+    bed:"bd", bath:"ba", sqm:"sqm"
+  }
+};
+
+const LISTINGS = [
+  {img:"1757525032844-9b79469cc37c", price:"฿180,000", bed:5, bath:6, sqm:"500", th:"บ้านเดี่ยวรีโนเวทใหม่ พร้อมสระว่ายน้ำส่วนตัวและสวนกว้าง", en:"Newly Renovated Single House with Private Pool and Big Garden"},
+  {img:"1529290130-4ca3753253ae", price:"฿300,000", bed:4, bath:5, sqm:"550", th:"บ้านเดี่ยวเพดานสูง โปร่งสบาย พร้อมสระว่ายน้ำส่วนตัว", en:"Bright and High Ceiling Single House with Private Pool"},
+  {img:"1707190203056-c1e70be19c18", price:"฿190,000", bed:5, bath:5, sqm:"450", th:"ทาวน์โฮมโมเดิร์นรีโนเวทใหม่ 5 ห้องนอน", en:"Newly Renovated Modern Townhome, 5 Bedrooms"},
+  {img:"1724582586529-62622e50c0b3", price:"฿50,000", bed:2, bath:2, sqm:"58", th:"ห้องสองห้องนอน สว่างสบาย น่าอยู่", en:"Bright and Nice Two Bedrooms"},
+  {img:"1609508845212-b4190e9351c2", price:"฿35,000", bed:1, bath:1, sqm:"60", th:"คอนโดไฮไรส์ ใจกลางกรุงเทพฯ", en:"The High-Rise Bangkok Condo"},
+  {img:"1646974400435-8df39fdb67bf", price:"฿55,000", bed:2, bath:2, sqm:"89.50", th:"ห้องสองห้องนอนรีโนเวทใหม่ ที่ Manhattan", en:"Newly Renovated Two Bedrooms at Manhattan"}
+];
+
+let lang="th";
+function renderListings(){
+  const t=I18N[lang];
+  document.getElementById("listings").innerHTML = LISTINGS.map((l,i)=>`
+    <article class="card reveal" data-d="${i%3}">
+      <div class="card-media"><img src="https://images.unsplash.com/photo-${l.img}?auto=format&fit=crop&w=800&q=80" alt="${l[lang]}" loading="lazy" /><span class="tag-price">${l.price}</span></div>
+      <div class="card-body"><h3>${l[lang]}</h3>
+        <div class="card-meta"><span class="chip">🛏 <b>${l.bed}</b> ${t.bed}</span><span class="chip">🛁 <b>${l.bath}</b> ${t.bath}</span><span class="chip">📐 <b>${l.sqm}</b> ${t.sqm}</span></div>
+      </div>
+    </article>`).join("");
+  observeReveals();
+}
+function setLang(l){
+  lang=l;const t=I18N[l];document.documentElement.lang=l;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{if(t[el.dataset.i18n]!=null)el.textContent=t[el.dataset.i18n];});
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>{if(t[el.dataset.i18nHtml]!=null)el.innerHTML=t[el.dataset.i18nHtml];});
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{if(t[el.dataset.i18nPh]!=null)el.placeholder=t[el.dataset.i18nPh];});
+  document.querySelectorAll("#lang button").forEach(b=>b.classList.toggle("active",b.dataset.lang===l));
+  renderListings();
+}
+document.querySelectorAll("#lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+document.querySelectorAll("#seg1 button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("#seg1 button").forEach(x=>x.classList.remove("active"));b.classList.add("active");}));
+const hdr=document.getElementById("hdr");addEventListener("scroll",()=>hdr.classList.toggle("solid",scrollY>30));
+const drawer=document.getElementById("drawer");
+document.getElementById("burger").addEventListener("click",()=>drawer.classList.add("open"));
+document.getElementById("drawerX").addEventListener("click",()=>drawer.classList.remove("open"));
+drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>drawer.classList.remove("open")));
+function observeReveals(){
+  document.querySelectorAll(".reveal:not(.in)").forEach(el=>{
+    if(el.getBoundingClientRect().top < innerHeight*0.9) el.classList.add("in");
+  });
+}
+addEventListener("scroll", observeReveals, {passive:true});
+addEventListener("resize", observeReveals);
+setLang("th");observeReveals();
+</script>
+</body>
+</html>
